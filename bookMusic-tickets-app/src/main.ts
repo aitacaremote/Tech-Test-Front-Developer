@@ -2,22 +2,40 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app/app.routes';
 import { ToastrModule } from 'ngx-toastr';
 import { environment as envProd } from 'src/environments/environment.prod';
 import { environment as envDev } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
+import { AuthService } from './app/core/auth/auth.service';
+import { JwtInterceptor } from './app/core/interceptors/jwt.interceptor';
 
 if (envProd.production) {
   enableProdMode();
 }
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+  ],
+  //term of service
+  tosUrl: '<your-tos-link>',
+  //privacy url
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  //credentialHelper:             firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+};
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -32,7 +50,16 @@ bootstrapApplication(AppComponent, {
       provideAuth(() => getAuth()),
       provideFirestore(() => getFirestore()),
       provideStorage(() => getStorage()),
+      AngularFireModule.initializeApp(envDev.firebase),
+      AngularFireAuthModule,
+      FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     ]),
-    {provide: FIREBASE_OPTIONS, useValue: envDev.firebase}
+    { provide: FIREBASE_OPTIONS, useValue: envDev.firebase },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+    AuthService,
   ],
 }).catch((err) => console.error(err));

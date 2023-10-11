@@ -1,7 +1,11 @@
 export interface IUser {
-  id: number;
-  name: string;
+  uid: string;
+
   email: string;
-  age: number;
-  gender: string;
+
+  displayName: string;
+
+  photoURL: string;
+
+  emailVerified: boolean;
 }
