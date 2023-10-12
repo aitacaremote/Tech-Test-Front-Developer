@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { PasswordValidators } from 'src/app/core/validators/password.validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +29,11 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 export class SignUpComponent implements OnInit {
   signupForm!: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    public passwordStrengthValidator: PasswordValidators,
+
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -33,9 +43,21 @@ export class SignUpComponent implements OnInit {
     this.signupForm = new FormGroup({
       email: new FormControl('', Validators.required),
 
-      password: new FormControl('', Validators.required),
+      password: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          this.passwordStrengthValidator.validatePasswordPattern,
+        ])
+      ),
 
-      confirmPassword: new FormControl('', Validators.required),
+      confirmPassword: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          this.passwordStrengthValidator.validatePasswordPattern,
+        ])
+      ),
 
       displayName: new FormControl('', Validators.required),
     });

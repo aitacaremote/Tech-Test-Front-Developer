@@ -1,16 +1,6 @@
 {
-  "functions": {
-    "source": "functions"
-  },
   "firestore": {
-    "rules": "firestore",
-    "indexes": "db.json"
-  },
-  "hosting": [
-    {
-      "target": "bookMusic-tickets-app",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ]
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
 }

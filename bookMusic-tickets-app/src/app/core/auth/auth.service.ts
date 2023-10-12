@@ -5,15 +5,17 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
 import { IUser } from 'src/app/shared/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userData!: IUser;
-  credentialData: any;
+  userData!: firebase.User;
+
+  refreshToken: string;
+  accessToken: string;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -30,19 +32,34 @@ export class AuthService {
 
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.userData = user as any;
+        this.userData = user;
 
-        localStorage.setItem('user', JSON.stringify(this.userData));
+        this.refreshToken = user.refreshToken;
+        user.getIdToken().then((token) => {
+          this.accessToken = token;
+          try {
+            localStorage.setItem(
+              'client',
+              JSON.stringify({
+                refreshToken: user.refreshToken,
+                accessToken: token,
+                emailVerified: user.emailVerified,
+              })
+            );
 
-        JSON.parse(localStorage.getItem('user')!);
+            JSON.parse(localStorage.getItem('client')!);
+          } catch (error) {
+            window.alert(error.message);
+          }
+        });
       } else {
-        localStorage.setItem('user', 'null');
+        localStorage.setItem('client', 'null');
 
-        JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('client')!);
       }
     });
-  } 
-  
+  }
+
   // Sign in with email/password
 
   SignIn(email: string, password: string) {
@@ -55,7 +72,7 @@ export class AuthService {
 
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['ticket-list']);
           }
         });
       })
@@ -83,20 +100,14 @@ export class AuthService {
       .catch((error) => {
         window.alert(error.message);
       });
-  } 
-  
+  }
+
   // Send email verfificaiton when new user sign up
 
   SendVerificationMail() {
-    return this.afAuth.currentUser
+    return this.afAuth.currentUser.then((u) => u.sendEmailVerification());
+  }
 
-      .then((u: any) => u.sendEmailVerification())
-
-      .then(() => {
-        this.router.navigate(['verify-email-address']);
-      });
-  } 
-  
   // Reset Forggot password
 
   ForgotPassword(passwordResetEmail: string) {
@@ -111,46 +122,38 @@ export class AuthService {
       .catch((error) => {
         window.alert(error);
       });
-  } 
-  
+  }
+
   // Returns true when user is looged in and email is verified
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    console.log('isLoggedIn');
 
-    return user !== null && user.emailVerified !== false ? true : false;
-  } 
-  
-  // Sign in with Google
+    const client = JSON.parse(localStorage.getItem('client')!);
 
-  GoogleAuth() {
-    return this.AuthLogin(new GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['dashboard']);
-    });
-  } 
-  
+    return client !== null && client.emailVerified !== false ? true : false;
+  }
+
   // Auth logic to run auth providers
 
-  AuthLogin(provider: any) {
+  AuthLogin(provider) {
     return this.afAuth
 
       .signInWithPopup(provider)
 
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        })
+          this.router.navigate(['ticket-list']);
+        });
 
         this.SetUserData(result.user);
-        this.credentialData = result.credential;
       })
 
       .catch((error) => {
-        window.alert(error);
+        window.alert(error.message);
       });
-  } 
-  
-  
+  }
+
   /* Setting up user data when sign in with username/password,
   
     sign up with username/password and sign in with social auth  
@@ -181,10 +184,6 @@ export class AuthService {
 
   getUserData() {
     return this.userData;
-  }
-
-  getCredentialData() {
-    return this.credentialData;
   }
 
   // Sign out

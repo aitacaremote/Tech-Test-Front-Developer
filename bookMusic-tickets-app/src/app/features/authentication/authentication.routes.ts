@@ -1,7 +1,8 @@
 import { Route } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { SignUpComponent } from './signup/signup.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export default [
   {
@@ -18,8 +19,12 @@ export default [
         component: LoginComponent,
       },
       {
-        path: 'reset/:token',
+        path: 'reset-password',
         component: ResetPasswordComponent,
+      },
+      {
+        path: 'sign-up',
+        component: SignUpComponent,
       },
     ],
   },

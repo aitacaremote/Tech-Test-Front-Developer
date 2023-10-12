@@ -1,14 +1,5 @@
 {
   "projects": {
     "default": "bookmusic-tickets"
-  },
-  "targets": {
-    "bookmusic-tickets": {
-      "hosting": {
-        "bookMusic-tickets-app": [
-          "bookmusic-tickets"
-        ]
-      }
-    }
   }
 }

@@ -6,13 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
-import {
-  catchError,
-  filter,
-  switchMap,
-  take,
-  takeUntil,
-} from 'rxjs/operators';
+import { catchError, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable()
@@ -23,12 +17,13 @@ export class JwtInterceptor implements HttpInterceptor {
   private accessToken: string;
   private refreshToken: string;
 
-  constructor(
-    private authService: AuthService,
-  ) {
-    this.accessToken = this.authService.getCredentialData().accessToken;
-    this.refreshToken = this.authService.getCredentialData().refreshToken;
+  constructor(private authService: AuthService) {
+    this.accessToken = this.authService.accessToken;
+    this.refreshToken = this.authService.refreshToken;
     this.refreshTokenSubject.next(this.accessToken);
+    console.log('accessToken', this.accessToken);
+    console.log('refreshToken', this.refreshToken);
+    console.log('refreshTokenSubject', this.refreshTokenSubject.getValue());
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -41,7 +36,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           return this.handle401Error(authReq, next);
         }
-        if (authReq.url.includes('refresh_token')) {
+        if (authReq.url.includes('refreshToken')) {
           this.takeUntilSubject.next(true);
         }
         return throwError(() => error);

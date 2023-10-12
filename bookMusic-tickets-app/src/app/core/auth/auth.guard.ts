@@ -3,31 +3,35 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   RouterStateSnapshot,
   Router,
+  ActivatedRouteSnapshot,
+  UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  shareReplay,
+  take,
+  tap,
+} from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.afAuth.authState.pipe(
-      take(1),
-      map((user) => {
-        if (user) {
-          return true;
-        } else {
-          this.router.navigate(['/login'], {
-            queryParams: { redirectUrl: state.url },
-          });
-          return false;
-        }
-      })
-    );
+  canActivate() {
+    if (!this.authService.isLoggedIn) {
+      console.log('user is not logged in');
+
+      this.router.navigate(['/login']);
+
+      return false;
+    }
+
+    return true;
   }
 }
