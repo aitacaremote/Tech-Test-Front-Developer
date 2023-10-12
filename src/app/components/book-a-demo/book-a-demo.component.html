@@ -1,0 +1,91 @@
+<div>
+  <h2 class="text">Do you want to discover our solution?</h2>
+
+  <p class="text">Complete the form and we will contact you to book a demo.</p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" />
+      <div
+        *ngIf="
+          form.get('name')?.hasError('required') && form.get('name')?.touched
+        "
+        class="error"
+      >
+        Name is required.
+      </div>
+      <div
+        *ngIf="
+          form.get('name')?.hasError('minlength') && form.get('name')?.touched
+        "
+        class="error"
+      >
+        Name must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" />
+      <div
+        *ngIf="
+          form.get('email')?.hasError('required') && form.get('email')?.touched
+        "
+        class="error"
+      >
+        Email is required.
+      </div>
+      <div
+        *ngIf="
+          form.get('email')?.hasError('email') && form.get('email')?.touched
+        "
+        class="error"
+      >
+        Enter a valid email.
+      </div>
+    </div>
+
+    <div>
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" formControlName="phone" />
+      <div
+        *ngIf="
+          form.get('phone')?.hasError('required') && form.get('phone')?.touched
+        "
+        class="error"
+      >
+        Phone is required.
+      </div>
+      <div
+        *ngIf="
+          form.get('phone')?.hasError('pattern') && form.get('phone')?.touched
+        "
+        class="error"
+      >
+        Enter a valid 10-digit phone number.
+      </div>
+    </div>
+
+    <div>
+      <label for="activityArea">Activity area:</label>
+      <select id="activityArea" formControlName="activityArea">
+        <option disabled selected hidden>-- Please choose an option --</option>
+        <option *ngFor="let option of dropdownOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="message">Message:</label>
+      <textarea
+        id="message"
+        formControlName="message"
+        rows="4"
+        cols="50"
+      ></textarea>
+    </div>
+    <button mat-raised-button type="submit" color="accent">Submit</button>
+  </form>
+</div>

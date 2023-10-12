@@ -1,0 +1,32 @@
+.section {
+  background-color: seashell;
+  margin: 50px auto;
+  width: 80%;
+  padding: 20px;
+  min-width: 500px;
+  border-radius: 20px;
+}
+
+.card-header {
+  color: #ff4081;
+  font-size: 30px;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  padding: 0 16px 16px;
+}
+
+.card-text {
+  padding: 10px;
+  line-height: 2;
+  font-size: 16px;
+}
+
+.card-image img {
+  border-radius: 20px;
+  width: 100%;
+  height: auto;
+  min-width: 200px;
+}

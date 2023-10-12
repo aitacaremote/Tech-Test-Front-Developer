@@ -1,0 +1,16 @@
+mat-card {
+  width: 80%;
+  margin: 100px auto;
+  text-align: center;
+  background: seashell;
+  padding: 30px;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
+mat-card-title {
+  font-size: 30px;
+  color: #ff5574;
+}

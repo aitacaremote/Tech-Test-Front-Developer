@@ -1,0 +1,50 @@
+.text {
+  padding: 0 1.2em;
+  text-align: center;
+}
+
+h2.text {
+  font-size: 50px;
+  color: #ff5574;
+}
+
+p.text {
+  color: #9a9092;
+  font-size: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+div {
+  margin: 10px 0;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+button {
+  width: 60%;
+  margin: 10px auto 30px;
+}

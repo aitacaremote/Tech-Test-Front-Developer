@@ -1,0 +1,14 @@
+.mat-toolbar {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+}
+
+.logo-container img {
+  width: 150px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
