@@ -23,3 +23,9 @@ During development, create at least three commits to show how you manage version
 
 ## Documentation
 Update README.md to include instructions on how to run and test your webpage and any additional functionality you have implemented.
+
+
+## Task
+ Clone the project and install node modules
+
+
