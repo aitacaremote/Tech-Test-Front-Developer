@@ -1,0 +1,15 @@
+mat-card {
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px #888;
+  text-align: center;
+  width: 80%;
+  min-width: 400px;
+}
+
+mat-card img {
+  max-width: 300px;
+  margin: 30px auto;
+  display: block;
+}
