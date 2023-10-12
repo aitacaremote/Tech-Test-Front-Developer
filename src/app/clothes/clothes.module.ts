@@ -1,23 +1,31 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
 
-import { ClothesRoutingModule } from './clothes-routing.module';
-import { ClothingListComponent } from './clothing-list/clothing-list.component';
-import { CardComponent } from './card/card.component';
-import { FormComponent } from './form/form.component';
-import { DetailsComponent } from './details/details.component';
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { CardComponent } from "./card/card.component";
+import { ClothesRoutingModule } from "./clothes-routing.module";
+import { ClothingListComponent } from "./clothing-list/clothing-list.component";
+import { DetailsComponent } from "./details/details.component";
+import { FormComponent } from "./form/form.component";
 
 @NgModule({
   declarations: [
     ClothingListComponent,
     CardComponent,
     FormComponent,
-    DetailsComponent
+    DetailsComponent,
   ],
   imports: [
     CommonModule,
-    ClothesRoutingModule
-  ]
+    ClothesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
 })
-export class ClothesModule { }
+export class ClothesModule {}
