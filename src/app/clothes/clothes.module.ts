@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CardComponent } from "./card/card.component";
 import { ClothesRoutingModule } from "./clothes-routing.module";
 import { ClothingListComponent } from "./clothing-list/clothing-list.component";
@@ -23,7 +22,7 @@ import { FormComponent } from "./form/form.component";
     CommonModule,
     ClothesRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
+
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

@@ -11,7 +11,7 @@ export class WebcamCaptureComponent implements AfterViewInit {
   @ViewChild("webcam", { static: false }) webcamElement!: WebcamComponent;
   public webcamImage: WebcamImage | null = null;
   public availableVideoInputs: MediaDeviceInfo[] | null = null;
-  private trigger: Subject<void> = new Subject<void>();
+  public trigger: Subject<void> = new Subject<void>();
 
   triggerSnapshot(): void {
     this.trigger.next();
@@ -31,8 +31,6 @@ export class WebcamCaptureComponent implements AfterViewInit {
   }
 
   handleImage(webcamImage: WebcamImage): void {
-    console.info("Saved webcam image", webcamImage);
     this.webcamImage = webcamImage;
-    console.log(this.webcamImage);
   }
 }

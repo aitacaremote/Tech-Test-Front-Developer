@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { WebcamModule } from "ngx-webcam";
+import { WebcamImage, WebcamModule } from "ngx-webcam";
 import { HomeRoutingModule } from "../home-routing.module";
 import { WebcamCaptureComponent } from "./webcam..capture.component";
 
@@ -20,5 +20,23 @@ describe("Given WebcamCaptureComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  describe("When triggerSnapshot is called", () => {
+    it("trigger.next should be called", () => {
+      const spytriggerNext = spyOn(component.trigger, "next");
+      component.triggerSnapshot();
+      expect(spytriggerNext).toHaveBeenCalled();
+    });
+  });
+
+  describe("When handleImage is called", () => {
+    it("trigger.next should be called", () => {
+      const mockWebcamImage = {
+        test: "Test webcamImage",
+      } as unknown as WebcamImage;
+      component.handleImage(mockWebcamImage);
+      expect(component.webcamImage).toEqual(mockWebcamImage);
+    });
   });
 });
