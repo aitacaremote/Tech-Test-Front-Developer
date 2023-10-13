@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -10,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
+import { EMAIL_PATTERN } from 'src/app/config/pattern.config';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
@@ -23,6 +25,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
     MatButtonModule,
     MatCardModule,
     RouterLink,
+    NgIf
   ],
 })
 export class ResetPasswordComponent implements OnInit {
@@ -32,7 +35,7 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.pattern(EMAIL_PATTERN)),
     });
   }
 

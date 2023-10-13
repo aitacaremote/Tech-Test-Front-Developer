@@ -21,9 +21,6 @@ export class JwtInterceptor implements HttpInterceptor {
     this.accessToken = this.authService.accessToken;
     this.refreshToken = this.authService.refreshToken;
     this.refreshTokenSubject.next(this.accessToken);
-    console.log('accessToken', this.accessToken);
-    console.log('refreshToken', this.refreshToken);
-    console.log('refreshTokenSubject', this.refreshTokenSubject.getValue());
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

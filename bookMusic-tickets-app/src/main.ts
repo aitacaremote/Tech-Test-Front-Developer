@@ -29,7 +29,7 @@ bootstrapApplication(AppComponent, {
       BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule,
-      RouterModule.forRoot(AppRoutes, { enableTracing: true }),
+      RouterModule.forRoot(AppRoutes),
       ToastrModule.forRoot({ preventDuplicates: true }),
       provideFirebaseApp(() => initializeApp(envDev.firebase)),
       provideAuth(() => getAuth()),

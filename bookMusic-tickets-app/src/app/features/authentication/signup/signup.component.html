@@ -27,6 +27,7 @@
                   type="text"
                   placeholder="Email"
                 />
+                <mat-error>{{ "Email is not valid" }}</mat-error>
               </mat-form-field>
             </div>
             <div class="flex justify-center mt-3">
@@ -38,6 +39,9 @@
                   type="password"
                   placeholder="Password"
                 />
+                <mat-error
+                  >{{ "Passwords is not valid" }}</mat-error
+                >
               </mat-form-field>
             </div>
             <div class="flex justify-center mt-3">
@@ -49,6 +53,9 @@
                   type="password"
                   placeholder="Confirm Password"
                 />
+                <mat-error
+                  >{{ "Passwords do not match" }}</mat-error
+                >
               </mat-form-field>
             </div>
           </mat-card-content>
@@ -58,9 +65,7 @@
             </button>
           </mat-card-actions>
           <mat-card-actions class="flex justify-center mx-3 my-3">
-            <a
-              class="text-[#2196f3]"
-              routerLink="/login"
+            <a class="text-[#2196f3]" routerLink="/login"
               >Already have an account? Click Here</a
             >
           </mat-card-actions>

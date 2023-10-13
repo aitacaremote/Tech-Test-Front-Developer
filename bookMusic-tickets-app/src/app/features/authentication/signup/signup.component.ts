@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EMAIL_PATTERN } from 'src/app/config/pattern.config';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { PasswordValidators } from 'src/app/core/validators/password.validators';
 
@@ -32,7 +34,7 @@ export class SignUpComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public passwordStrengthValidator: PasswordValidators,
-
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class SignUpComponent implements OnInit {
 
   createForm() {
     this.signupForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.pattern(EMAIL_PATTERN)),
 
       password: new FormControl(
         '',
@@ -58,8 +60,6 @@ export class SignUpComponent implements OnInit {
           this.passwordStrengthValidator.validatePasswordPattern,
         ])
       ),
-
-      displayName: new FormControl('', Validators.required),
     });
   }
 
@@ -70,6 +70,8 @@ export class SignUpComponent implements OnInit {
 
         this.signupForm.value.password
       );
+    } else {
+      this.toastr.error('Form is not valid');
     }
   }
 }

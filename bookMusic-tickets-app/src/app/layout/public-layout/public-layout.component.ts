@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'app-public-layout',
   standalone: true,
   imports: [RouterOutlet],
   template: `
@@ -10,6 +10,6 @@ import { RouterOutlet } from '@angular/router';
       <router-outlet />
     </div>
   `,
-  styleUrls: ['layout.component.scss'],
+  styleUrls: ['public-layout.component.scss'],
 })
-export class LayoutComponent {}
+export class PublicLayoutComponent {}

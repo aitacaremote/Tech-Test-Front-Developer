@@ -7,6 +7,7 @@ import {
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { IUser } from 'src/app/shared/models';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,62 +26,36 @@ export class AuthService {
     public ngZone: NgZone,
 
     public router: Router
-  ) {
-    /* Saving user data in localstorage when
-  
-      logged in and setting up null when logged out */
-
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-
-        this.refreshToken = user.refreshToken;
-        user.getIdToken().then((token) => {
-          this.accessToken = token;
-          try {
-            localStorage.setItem(
-              'client',
-              JSON.stringify({
-                refreshToken: user.refreshToken,
-                accessToken: token,
-                emailVerified: user.emailVerified,
-              })
-            );
-
-            JSON.parse(localStorage.getItem('client')!);
-          } catch (error) {
-            window.alert(error.message);
-          }
-        });
-      } else {
-        localStorage.setItem('client', 'null');
-
-        JSON.parse(localStorage.getItem('client')!);
-      }
-    });
-  }
+  ) {}
 
   // Sign in with email/password
 
-  SignIn(email: string, password: string) {
-    return this.afAuth
-
-      .signInWithEmailAndPassword(email, password)
-
-      .then((result) => {
-        this.SetUserData(result.user);
-
-        this.afAuth.authState.subscribe((user) => {
-          if (user) {
-            this.router.navigate(['ticket-list']);
-          }
-        });
-      })
-
-      .catch((error) => {
-        window.alert(error.message);
-      });
-  } // Sign up with email/password
+  async SignIn(email: string, password: string) {
+    try {
+      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      
+      this.userData = result.user;
+      this.refreshToken = result.user.refreshToken;
+      this.accessToken = await result.user.getIdToken();
+  
+      localStorage.setItem(
+        'client',
+        JSON.stringify({
+          refreshToken: this.refreshToken,
+          accessToken: this.accessToken,
+          emailVerified: result.user.emailVerified,
+        })
+      );
+  
+      this.SetUserData(result.user);
+ 
+    } catch (error) {
+      window.alert(error.message);
+      localStorage.setItem('client', 'null');
+    }
+  } 
+  
+  // Sign up with email/password
 
   SignUp(email: string, password: string) {
     return this.afAuth
@@ -170,7 +145,7 @@ export class AuthService {
 
       email: user.email,
 
-      displayName: user.displayName,
+      displayName: environment.appName,
 
       photoURL: user.photoURL,
 
@@ -190,9 +165,9 @@ export class AuthService {
 
   SignOut() {
     return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
+      localStorage.removeItem('client');
 
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
     });
   }
 }
