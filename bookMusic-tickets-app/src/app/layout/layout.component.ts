@@ -6,9 +6,10 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   template: `
-    <div class="h-full w-full">
+    <div class="h-full w-full body">
       <router-outlet />
     </div>
   `,
+  styleUrls: ['layout.component.scss'],
 })
 export class LayoutComponent {}
