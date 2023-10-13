@@ -9,6 +9,7 @@ p{
     border-radius: 10px;
     box-shadow: 0 0 15px rgba($color: #000000, $alpha: .3);
     overflow: hidden;
+    min-width: 350px;
 }
 
 .body{
@@ -21,6 +22,7 @@ p{
     gap: 1rem;
     padding-bottom: .75rem;
     border-bottom: 1px solid lightgray;
+    margin-bottom: 1rem;
 }
 .picture{
     width: 50px;

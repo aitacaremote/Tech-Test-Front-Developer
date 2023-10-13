@@ -1,6 +1,6 @@
 <div class="body" *ngIf="form">
     <form [formGroup]="form" class="form" (ngSubmit)="saveCard()">
-        <div style="display: flex; align-items: center; gap: 2rem;">
+        <div class="formBody">
             <div class="form__picture">
                 <input type="file" accept="image/*" style="display: none;" id="photo" (change)="uploadPicture($event)">
                 <label class="pictureContainer" for="photo" *ngIf="!picture, else pictureSelected">
