@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="crud">
+        <button mat-icon-button aria-label="Example icon button with a home icon" class="btn" (click)="editCard()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        <button mat-icon-button aria-label="Example icon button with a home icon" class="btn" (click)="removeCard()">
+            <mat-icon>close</mat-icon>
+          </button>
+    </div>
+    <div class="body">
+        <div class="head">
+            <div [ngStyle]="{'background-image': 'url(' + (card.picture || '/assets/noPicture-user.jpg') + ')'}" class="picture"></div>
+            <p>{{card.firstname + ' ' + card.lastname}}</p>
+        </div>
+        <p>
+            {{card.text || "Not described"}}
+        </p>
+    </div>
+</div>

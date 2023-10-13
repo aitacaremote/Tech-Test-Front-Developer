@@ -1,0 +1,35 @@
+<div class="body" *ngIf="form">
+    <form [formGroup]="form" class="form" (ngSubmit)="saveCard()">
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <div class="form__picture">
+                <input type="file" accept="image/*" style="display: none;" id="photo" (change)="uploadPicture($event)">
+                <label class="pictureContainer" for="photo" *ngIf="!picture, else pictureSelected">
+                    <mat-icon fontIcon="photo_camera"></mat-icon>
+                </label>
+                <ng-template #pictureSelected>
+                    <div class="picture" [ngStyle]="{'background-image': 'url(' + picture + ')'}">
+                    </div>
+                </ng-template>
+            </div>
+            <div class="form__fields">
+                <mat-form-field>
+                    <mat-label>Firstname</mat-label>
+                    <input matInput placeholder="Firstname..." formControlName="firstname">
+                </mat-form-field>
+                <p *ngIf="form.get('firstname')?.hasError('required') && form.get('firstname')?.touched" class="error">Field firstname is required</p>
+                <p *ngIf="form.get('firstname')?.hasError('minlength') && form.get('firstname')?.touched" class="error">This field has a minimum length of three</p>
+                <mat-form-field>
+                    <mat-label>Lastname</mat-label>
+                    <input matInput placeholder="Lastname..." formControlName="lastname">
+                </mat-form-field>
+                <p *ngIf="form.get('firstname')?.hasError('required') && form.get('lastname')?.touched" class="error">Field lastname is required</p>
+                <p *ngIf="form.get('firstname')?.hasError('minlength') && form.get('lastname')?.touched" class="error">This field has a minimum length of three</p>
+                <mat-form-field>
+                    <mat-label>Text</mat-label>
+                    <textarea matInput placeholder="Text..." formControlName="text"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="form.invalid">Send</button>
+    </form>
+</div>
