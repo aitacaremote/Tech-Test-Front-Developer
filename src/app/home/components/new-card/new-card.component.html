@@ -22,8 +22,8 @@
                     <mat-label>Lastname</mat-label>
                     <input matInput placeholder="Lastname..." formControlName="lastname">
                 </mat-form-field>
-                <p *ngIf="form.get('firstname')?.hasError('required') && form.get('lastname')?.touched" class="error">Field lastname is required</p>
-                <p *ngIf="form.get('firstname')?.hasError('minlength') && form.get('lastname')?.touched" class="error">This field has a minimum length of three</p>
+                <p *ngIf="form.get('lastname')?.hasError('required') && form.get('lastname')?.touched" class="error">Field lastname is required</p>
+                <p *ngIf="form.get('lastname')?.hasError('minlength') && form.get('lastname')?.touched" class="error">This field has a minimum length of three</p>
                 <mat-form-field>
                     <mat-label>Text</mat-label>
                     <textarea matInput placeholder="Text..." formControlName="text"></textarea>

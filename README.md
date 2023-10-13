@@ -23,3 +23,11 @@ During development, create at least three commits to show how you manage version
 
 ## Documentation
 Update README.md to include instructions on how to run and test your webpage and any additional functionality you have implemented.
+
+## Card Manager App
+
+This app is a crud with the function of manage cards with a firstname, lastname, decription and a picture.
+You can run this app you have to install angular cli and running the command ng serve in the root directory:
+    ng serve
+
+You can create a card going to the "+" symbol in the right top corner of the app, here you'll have to fill the form (fields firstname an lastname are required and has a minimum length of three). Once sent, you'll have to go to home page with the button in the left top corner of the page, here you will see every card you had created. Once there, you cand delete or edit this cards.
