@@ -1,1 +1,38 @@
 
+.section1{
+  height: 400px;
+  width: 100%;
+  background-image: url(../../assets/images/section1.jpg);
+  background-repeat: repeat-x;
+  opacity: 70%;
+  display:flex;
+  align-items: center;
+    justify-content: center;
+}
+.btn{
+  display: flex;
+  color: black;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+.section2{
+  height: 400px;
+  width: 100%;
+  background-image: url(../../assets/images/section1.jpg);
+  background-repeat: repeat-x;
+  opacity: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section3{
+  height: 400px;
+  width: 100%;
+  background-image: url(../../assets/images/section1.jpg);
+  background-repeat: repeat-x;
+  opacity: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
