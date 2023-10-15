@@ -1,7 +1,8 @@
-
+.contact{
+  height: 100%;
+}
 body {
   font-family: IbarraLetter;
-  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -11,6 +12,7 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  height: 100%;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;

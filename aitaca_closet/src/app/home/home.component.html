@@ -1,16 +1,57 @@
-  <header>
-    <app-menu></app-menu>
-  </header>
-  <body class="container">
-    <section class="section1">
-      <button class="btn">New In</button>
-    </section>
-    <section class="section2">
-      <button class="btn">Otoño-Invierno 2023/24</button>
-    </section>
-    <section class="section3">
-      <button class="btn">Primavera-Verano 2023</button>
-    </section>
-  </body>
-  <footer></footer>
+<header>
+  <app-menu></app-menu>
+</header>
+<body class="container">
+    <div class="carousel-container">
+      <input class="carousel-radio" type="radio" name="carousel" id="slide1" checked>
+      <div class="carousel-slide">
+        <img src="../../assets/images/1.jpg" alt="Imagen 1">
+      </div>
+      <input class="carousel-radio" type="radio" name="carousel" id="slide2">
+      <div class="carousel-slide">
+        <img src="../../assets/images/2.jpg" alt="Imagen 2">
+      </div>
+      <input class="carousel-radio" type="radio" name="carousel" id="slide3">
+      <div class="carousel-slide">
+        <img src="../../assets/images/3.jpg" alt="Imagen 3">
+      </div>
+      <input class="carousel-radio" type="radio" name="carousel" id="slide4">
+      <div class="carousel-slide">
+        <img src="../../assets/images/4.jpg" alt="Imagen 4">
+      </div>
+      <input class="carousel-radio" type="radio" name="carousel" id="slide5">
+      <div class="carousel-slide">
+        <img src="../../assets/images/5.jpg" alt="Imagen 5">
+      </div>
+      <input class="carousel-radio" type="radio" name="carousel" id="slide6">
+      <div class="carousel-slide">
+        <img src="../../assets/images/6.jpg" alt="Imagen 6">
+      </div>
+      <input class="carousel-radio" type="radio" name="carousel" id="slide7">
+      <div class="carousel-slide">
+        <img src="../../assets/images/7.jpg" alt="Imagen 7">
+      </div>
+      <div class="carousel-indicators">
+        <label class="carousel-radio-label" for="slide1"></label>
+        <label class="carousel-radio-label" for="slide2"></label>
+        <label class="carousel-radio-label" for="slide3"></label>
+        <label class="carousel-radio-label" for="slide4"></label>
+        <label class="carousel-radio-label" for="slide5"></label>
+        <label class="carousel-radio-label" for="slide6"></label>
+        <label class="carousel-radio-label" for="slide7"></label>
+      </div>
 
+    </div>
+  <section class="section1">
+    <button class="btn">Novedades</button>
+  </section>
+  <section class="section2">
+    <button class="btn">Otoño-Invierno 2023/24</button>
+  </section>
+  <section class="section3">
+    <button class="btn">Primavera-Verano 2023</button>
+  </section>
+</body>
+<footer>
+  <app-footer></app-footer>
+</footer>

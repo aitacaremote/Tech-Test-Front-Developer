@@ -1,4 +1,57 @@
 
+.carousel-container {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+
+}
+.carousel-radio {
+  display: none;
+  text-decoration: none;
+}
+.carousel-radio:visited{
+  color: lightgray;
+}
+.carousel-slide {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s;
+  display: flex;
+  justify-content: center;
+}
+.carousel-radio:checked+.carousel-slide {
+  opacity: 1;
+  text-decoration: none;
+}
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.carousel-radio-label {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #333;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.carousel-radio:checked+.carousel-slide+.carousel-indicators .carousel-radio-label {
+  background: rgb(214, 214, 218);
+}
+img
+{
+  height: 600px;
+  width: 500px;
+}
 .section1{
   height: 400px;
   width: 100%;
@@ -7,7 +60,7 @@
   opacity: 70%;
   display:flex;
   align-items: center;
-    justify-content: center;
+  justify-content: center;
 }
 .btn{
   display: flex;
@@ -15,11 +68,18 @@
   position: absolute;
   justify-content: center;
   align-items: center;
+  height: 40px;
+  background-color: rgb(153, 99, 122);
+  &:hover{
+    cursor: pointer;
+    background-color: rgb(104, 24, 59);
+    transition: all ease-in-out 0.3s;
+  }
 }
 .section2{
   height: 400px;
   width: 100%;
-  background-image: url(../../assets/images/section1.jpg);
+  background-image: url(../../assets/images/secion2.jpg);
   background-repeat: repeat-x;
   opacity: 70%;
   display: flex;
@@ -29,7 +89,7 @@
 .section3{
   height: 400px;
   width: 100%;
-  background-image: url(../../assets/images/section1.jpg);
+  background-image: url(../../assets/images/section3.jpg);
   background-repeat: repeat-x;
   opacity: 70%;
   display: flex;
