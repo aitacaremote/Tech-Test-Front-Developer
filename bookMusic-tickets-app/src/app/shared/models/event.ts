@@ -1,15 +1,15 @@
 export interface IEvent {
-  id: number;
+  id: string;
   name: string;
-  date: string;
-  time: string;
+  date: any;
   venue: string;
   location: string;
-  artists: string[];
-  pack: IPack[];
+  pack: string;
+  description: string;
 }
 
 export interface IPack {
+  id: string;
   type: PackEnumType;
   price: number;
   amount: number;

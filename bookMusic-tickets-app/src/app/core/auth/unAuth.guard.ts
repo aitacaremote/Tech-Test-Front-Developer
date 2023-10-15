@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard {
+export class UnAuthGuard {
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -15,8 +15,8 @@ export class AuthGuard {
 
   canActivate() {
     
-    if (this.authService.isLoggedIn) {
-      this.router.navigate(['/p']);
+    if (!this.authService.isLoggedIn) {
+      this.router.navigate(['/login']);
       return false;
     } else {
       return true;

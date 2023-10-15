@@ -1,0 +1,23 @@
+<mat-card class="p-6 bg-white shadow-xlrounded-[28px] border border-[#82D7DE] cursor-pointer" (click)="click()">
+  <mat-card-header>
+    <div mat-card-avatar class="w-16 cover">
+      <img
+        [src]="
+          'https://www.shutterstock.com/image-vector/music-city-skyline-logo-design-260nw-2104738778.jpg'
+        "
+      />
+    </div>
+    <mat-card-title>{{ event.name }}</mat-card-title>
+    <mat-card-subtitle >
+      <p>{{ $any(event.date) | timestampToDate }}</p>
+      <p>{{ event.venue }}, {{ event.location }}</p>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-divider class="mt-5"></mat-divider>
+  
+  <mat-card-content [title]="event.description" class="my-4">
+    {{
+      event.description}}
+  </mat-card-content>
+</mat-card>

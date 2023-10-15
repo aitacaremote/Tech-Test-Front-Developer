@@ -1,18 +1,17 @@
-<nav class="bg-white border-gray-200">
+<nav class="bg-[#0000] w-full">
   <div
     class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
   >
-    <div class="flex items-center">
-      <span
-        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        >Stage</span
-      >
-    </div>
+    <div></div>
     <div class="flex items-center md:order-2">
-      <button mat-button [matMenuTriggerFor]="menu">
+      <div *ngIf="userData$ | async as user" class="">
+        <p class="text-[#2196f3] flex justify-center pr-4">{{ user.displayName }}</p>
+        <p class="text-[#2196f3] flex justify-center pr-4">{{ user.email }}</p>
+      </div>
+      <button mat-button class="flex" [matMenuTriggerFor]="menu">
         <img
           class="w-8 h-8 border-2 border-teal-500 border-solid rounded-full"
-          src="
+          [src]="
             'https://via.placeholder.com/100'
           "
         />
@@ -22,6 +21,7 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Reservation</button>
+        <button mat-menu-item (click)="signOut()">logout</button>
       </mat-menu>
     </div>
   </div>

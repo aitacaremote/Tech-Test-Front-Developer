@@ -2,7 +2,7 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app/app.routes';
 import { ToastrModule } from 'ngx-toastr';
@@ -15,8 +15,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AuthService } from './app/core/auth/auth.service';
-import { JwtInterceptor } from './app/core/interceptors/jwt.interceptor';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MyCustomPaginatorIntl } from './app/shared/services/custom-paginator-init.service';
 
 if (envProd.production) {
   enableProdMode();
@@ -39,11 +39,6 @@ bootstrapApplication(AppComponent, {
       AngularFireAuthModule,
     ]),
     { provide: FIREBASE_OPTIONS, useValue: envDev.firebase },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-    },
-    AuthService,
+    {provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl}
   ],
 }).catch((err) => console.error(err));

@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EMAIL_PATTERN } from 'src/app/config/pattern.config';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { PasswordValidators } from 'src/app/core/validators/password.validators';
@@ -33,7 +34,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    public passwordStrengthValidator: PasswordValidators
+    public passwordStrengthValidator: PasswordValidators,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +63,8 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.email,
         this.loginForm.value.password
       );
+    } else {
+      this.toastr.error('Form is not valid');
     }
   }
 }

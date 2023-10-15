@@ -5,4 +5,5 @@ export const POSITIVE_INTEGER = '^[0-9]+$';
 export const DECIMAL_NUMBER = '^[0-9]+(\\.[0-9])?$';
 export const EMAIL_PATTERN =
   /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,7}$/;
+export const USERNAME_PATTERN = /^[a-zA-Z0-9]+$/;
 

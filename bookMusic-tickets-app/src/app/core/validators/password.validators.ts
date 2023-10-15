@@ -55,8 +55,8 @@ export class PasswordValidators {
   validateSamePasswords: ValidatorFn = (
     control: AbstractControl
   ): ValidationErrors | null => {
-    const newPassword = control.get('newPassword');
-    const newPasswordConfirmation = control.get('newPasswordConfirmation');
+    const newPassword = control.get('password');
+    const newPasswordConfirmation = control.get('confirmPassword');
 
     return newPassword?.value === newPasswordConfirmation?.value
       ? null

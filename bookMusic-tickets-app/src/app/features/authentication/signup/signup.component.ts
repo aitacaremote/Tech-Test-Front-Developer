@@ -4,14 +4,15 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  FormBuilder,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { EMAIL_PATTERN } from 'src/app/config/pattern.config';
+import { EMAIL_PATTERN, USERNAME_PATTERN } from 'src/app/config/pattern.config';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { PasswordValidators } from 'src/app/core/validators/password.validators';
 
@@ -34,7 +35,9 @@ export class SignUpComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public passwordStrengthValidator: PasswordValidators,
-    private toastr: ToastrService
+    private router: Router,
+    private toastr: ToastrService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -42,34 +45,38 @@ export class SignUpComponent implements OnInit {
   }
 
   createForm() {
-    this.signupForm = new FormGroup({
-      email: new FormControl('', Validators.pattern(EMAIL_PATTERN)),
-
-      password: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required,
-          this.passwordStrengthValidator.validatePasswordPattern,
-        ])
-      ),
-
-      confirmPassword: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required,
-          this.passwordStrengthValidator.validatePasswordPattern,
-        ])
-      ),
-    });
+    this.signupForm = this.fb.group(
+      {
+        displayName: ['', Validators.pattern(USERNAME_PATTERN)],
+        email: ['', Validators.pattern(EMAIL_PATTERN)],
+        password: [
+          '',
+          Validators.compose([
+            Validators.required,
+            this.passwordStrengthValidator.validatePasswordPattern,
+          ]),
+        ],
+        confirmPassword: [
+          '',
+          Validators.compose([
+            Validators.required,
+            this.passwordStrengthValidator.validatePasswordPattern,
+          ]),
+        ],
+      },
+      { validators: this.passwordStrengthValidator.validateSamePasswords }
+    );
   }
 
   signup() {
     if (this.signupForm.valid) {
       this.authService.SignUp(
         this.signupForm.value.email,
-
-        this.signupForm.value.password
+        this.signupForm.value.password,
+        this.signupForm.value.displayName
       );
+      this.toastr.success('created successfully');
+      this.router.navigate(['/login']);
     } else {
       this.toastr.error('Form is not valid');
     }

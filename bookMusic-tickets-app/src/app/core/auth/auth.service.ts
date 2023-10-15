@@ -6,6 +6,8 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
+import { ToastrService } from 'ngx-toastr';
+import { filter, from, switchMap } from 'rxjs';
 import { IUser } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +15,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  userData!: firebase.User;
+  userData!: any;
 
   refreshToken: string;
   accessToken: string;
@@ -25,39 +27,44 @@ export class AuthService {
 
     public ngZone: NgZone,
 
-    public router: Router
+    public router: Router,
+
+    private toastr: ToastrService,
   ) {}
 
   // Sign in with email/password
 
   async SignIn(email: string, password: string) {
     try {
-      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-      
-      this.userData = result.user;
+      const result = await this.afAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
       this.refreshToken = result.user.refreshToken;
       this.accessToken = await result.user.getIdToken();
-  
-      localStorage.setItem(
-        'client',
-        JSON.stringify({
-          refreshToken: this.refreshToken,
-          accessToken: this.accessToken,
-          emailVerified: result.user.emailVerified,
-        })
-      );
-  
-      this.SetUserData(result.user);
- 
+
+      if (!result.user.emailVerified) {
+        this.toastr.error('Please verify your email');
+      } else {
+        localStorage.setItem(
+          'client',
+          JSON.stringify({
+            refreshToken: this.refreshToken,
+            accessToken: this.accessToken,
+            emailVerified: result.user.emailVerified,
+          })
+        );
+        this.router.navigate(['/p/events']);
+      }
     } catch (error) {
       window.alert(error.message);
       localStorage.setItem('client', 'null');
     }
-  } 
-  
+  }
+
   // Sign up with email/password
 
-  SignUp(email: string, password: string) {
+  async SignUp(email: string, password: string, displayName: string) {
     return this.afAuth
 
       .createUserWithEmailAndPassword(email, password)
@@ -69,7 +76,14 @@ export class AuthService {
 
         this.SendVerificationMail();
 
-        this.SetUserData(result.user);
+        let createdUser = {
+          uid: result.user.uid,
+          email: result.user.email,
+          displayName,
+          photoURL: result.user.photoURL,
+          emailVerified: result.user.emailVerified,
+        };
+        this.SetUserData(createdUser);
       })
 
       .catch((error) => {
@@ -99,34 +113,21 @@ export class AuthService {
       });
   }
 
+  get currentUser$() {
+    return this.afAuth.authState.pipe(
+      filter((userAuth) => !!userAuth),
+      switchMap((userAuth) =>
+        this.afs.doc<IUser>(`users/${userAuth.uid}`).valueChanges()
+      )
+    );
+  }
+
   // Returns true when user is looged in and email is verified
 
   get isLoggedIn(): boolean {
-    console.log('isLoggedIn');
-
-    const client = JSON.parse(localStorage.getItem('client')!);
+    const client = localStorage.getItem('client') as any;
 
     return client !== null && client.emailVerified !== false ? true : false;
-  }
-
-  // Auth logic to run auth providers
-
-  AuthLogin(provider) {
-    return this.afAuth
-
-      .signInWithPopup(provider)
-
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['ticket-list']);
-        });
-
-        this.SetUserData(result.user);
-      })
-
-      .catch((error) => {
-        window.alert(error.message);
-      });
   }
 
   /* Setting up user data when sign in with username/password,
@@ -140,25 +141,23 @@ export class AuthService {
       `users/${user.uid}`
     );
 
-    const userData: IUser = {
+    const userData = {
       uid: user.uid,
 
       email: user.email,
 
-      displayName: environment.appName,
+      displayName: user.displayName,
 
       photoURL: user.photoURL,
 
       emailVerified: user.emailVerified,
     };
 
+    this.userData = userData;
+
     return userRef.set(userData, {
       merge: true,
     });
-  }
-
-  getUserData() {
-    return this.userData;
   }
 
   // Sign out
@@ -167,7 +166,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('client');
 
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     });
   }
 }

@@ -1,0 +1,15 @@
+<div [formGroup]="filterForm">
+  <div
+    class="grid grid-cols-3 gap-2 p-1 pb-[1.0938rem] px-4 mb-5 "
+  >
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="name" placeholder="Festival Name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="venue" placeholder="Venue" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="location" placeholder="Location" />
+    </mat-form-field>
+  </div>
+</div>

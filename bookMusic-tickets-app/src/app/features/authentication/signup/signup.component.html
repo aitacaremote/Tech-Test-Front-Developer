@@ -9,13 +9,14 @@
           <mat-card-content>
             <div class="flex justify-center mt-3">
               <mat-form-field class="w-100">
-                <mat-label>FullName</mat-label>
+                <mat-label>Username</mat-label>
                 <input
                   matInput
                   formControlName="displayName"
                   type="text"
-                  placeholder="Name"
+                  placeholder="Username"
                 />
+                <mat-error>{{ "Username is not valid" }}</mat-error>
               </mat-form-field>
             </div>
             <div class="flex justify-center mt-3">
