@@ -6,10 +6,14 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
   styleUrls: ['./application-page-form.component.css']
 })
 export class ApplicationPageFormComponent {
-  websiteList: any = ['Emre','Test']  
+  websiteList: any = ['linkedln','github']  
     
   form = new FormGroup({  
-    website: new FormControl('', Validators.required)  
+    website: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),  
+    surname: new FormControl('', Validators.required),  
+    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(11)]),  
+    city: new FormControl('',Validators.required),  
   });  
     
   get f(){  
@@ -17,9 +21,11 @@ export class ApplicationPageFormComponent {
   }  
     
   submit(){  
+    console.log("Submit Clicked");
     console.log(this.form.value);  
   }  
   changeWebsite(e:any) {  
     console.log(e.target.value);  
   }  
+
 }
