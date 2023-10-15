@@ -1,0 +1,6 @@
+<div class="camera-container">
+  <webcam #webcam [width]="windowWith/1.2" [trigger]="triggerObservable" (imageCapture)="handleImage($event)">
+  </webcam>
+</div>
+<p>Para subir una prenda, apunta a la prenda que deseas capturar y luego haz clic en el botón 'Capturar'</p>
+<button (click)="triggerSnapshot()" mat-raised-button color="primary">Capturar</button>

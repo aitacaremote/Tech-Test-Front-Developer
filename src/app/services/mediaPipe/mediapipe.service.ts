@@ -5,14 +5,14 @@ import { FilesetResolver, ImageClassifier } from "@mediapipe/tasks-vision";
   providedIn: "root",
 })
 export class MediapipeService {
-  private imageClassifier: ImageClassifier | undefined;
+  public imageClassifier: ImageClassifier | undefined;
   private runningMode = "IMAGE";
 
   constructor() {
     this.initializeImageClassifier();
   }
 
-  private async initializeImageClassifier() {
+  public async initializeImageClassifier() {
     const vision = await FilesetResolver.forVisionTasks(
       "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.2/wasm"
     );
@@ -38,8 +38,6 @@ export class MediapipeService {
 
     const classificationResult = this.imageClassifier.classify(imageElement);
     const classifications = classificationResult.classifications;
-    // classificationResult.close();
-
     const classificationData = {
       category: classifications[0].categories[0].categoryName,
       confidence: Math.round(classifications[0].categories[0].score) * 100,

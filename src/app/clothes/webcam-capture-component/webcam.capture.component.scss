@@ -1,0 +1,16 @@
+:host {
+  width: 100%;
+  min-height: 90vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-around;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  p {
+    all: unset;
+    line-height: 1.5;
+  }
+}

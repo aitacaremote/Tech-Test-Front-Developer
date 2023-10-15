@@ -1,3 +1,4 @@
+<img *ngIf="imgUrl" [src]="imgUrl" alt="Imagen de la prenda">
 <form [formGroup]="clothesForm" (submit)="handleSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>

@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { WebcamImage, WebcamModule } from "ngx-webcam";
-import { HomeRoutingModule } from "../home-routing.module";
+import { WebcamImage, WebcamModule, WebcamUtil } from "ngx-webcam";
+import { HomeRoutingModule } from "../../home/home-routing.module";
 import { WebcamCaptureComponent } from "./webcam..capture.component";
 
 describe("Given WebcamCaptureComponent", () => {
@@ -13,6 +13,7 @@ describe("Given WebcamCaptureComponent", () => {
       declarations: [WebcamCaptureComponent],
       imports: [CommonModule, HomeRoutingModule, WebcamModule],
     });
+    spyOn(WebcamUtil, "getAvailableVideoInputs").and.resolveTo(undefined);
     fixture = TestBed.createComponent(WebcamCaptureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

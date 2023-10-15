@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@mediapipe/face_detection": "^0.4.1646425229",
+    "@mediapipe/tasks-vision": "^0.10.7",
     "@tensorflow/tfjs": "^4.11.0",
     "bower": "^1.8.14",
     "cloudinary_ng": "^1.1.1",

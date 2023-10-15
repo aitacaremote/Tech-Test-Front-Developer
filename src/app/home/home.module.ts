@@ -1,12 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { WebcamModule } from "ngx-webcam";
+import { MediapipeService } from "../services/mediaPipe/mediapipe.service";
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home/home.component";
-import { WebcamCaptureComponent } from "./webcam-capture-component/webcam..capture.component";
 @NgModule({
-  declarations: [HomeComponent, WebcamCaptureComponent],
-  imports: [CommonModule, HomeRoutingModule, WebcamModule],
-  providers: [],
+  declarations: [HomeComponent],
+  imports: [CommonModule, HomeRoutingModule],
+  providers: [MediapipeService],
 })
 export class HomeModule {}
