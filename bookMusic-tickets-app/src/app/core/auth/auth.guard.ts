@@ -16,7 +16,7 @@ export class AuthGuard {
   canActivate() {
     
     if (this.authService.isLoggedIn) {
-      this.router.navigate(['/p']);
+      this.router.navigate(['/p/events']);
       return false;
     } else {
       return true;

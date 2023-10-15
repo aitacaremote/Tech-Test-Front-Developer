@@ -3,9 +3,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
-  width: 40%;
-  position: fixed; /* Add relative positioning to create a context for absolute positioning */
+  width: 100%; /* Add relative positioning to create a context for absolute positioning */
 
   /* Style for the "Stage" title */
   &::before {

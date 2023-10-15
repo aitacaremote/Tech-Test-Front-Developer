@@ -10,7 +10,7 @@ export class EventsService {
   constructor(public afs: AngularFirestore) {}
 
   findAll() {
-    return from(this.afs.collection<IEvent>('events').valueChanges());
+    return this.afs.collection<IEvent>('events').valueChanges();
   }
 
   findOne(id) {

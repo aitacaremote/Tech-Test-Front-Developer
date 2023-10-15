@@ -11,7 +11,5 @@ export function dateToTimestamp(date: Date) {
     nanoseconds: nanoseconds,
   };
 
-  console.log(result);
-
   return result;
 }

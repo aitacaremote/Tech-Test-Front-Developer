@@ -6,7 +6,7 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { EventsService } from '../../../services/events.service';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { IEvent } from 'src/app/shared/models';
-import { dateToTimestamp } from '../../../../../core/helpers/date-to-timestamp'
+import { dateToTimestamp } from '../../../../../core/helpers/date-to-timestamp';
 
 @Component({
   selector: 'app-event-list',
@@ -25,9 +25,9 @@ export class EventListComponent {
   events$ = new BehaviorSubject<IEvent[]>([]);
   pageEvent: PageEvent;
   count = 0;
-  pageSize = 5;
+  pageSize = 4;
   pageIndex = 0;
-  pageSizeOptions = [5, 10, 25];
+  pageSizeOptions = [4, 10, 25];
   hidePageSize = false;
   showPageSizeOptions = true;
   showFirstLastButtons = true;
@@ -66,29 +66,34 @@ export class EventListComponent {
   }
 
   handleSearch(value) {
-    this.eventService.findAll().pipe(
-      map((events) =>
-        events.filter((event) => {
-          if (value.name) {
-            return event.name.toLowerCase().includes(value.name.toLowerCase());
-          }
-          if (value.venue) {
-            return event.venue
-              .toLowerCase()
-              .includes(value.venue.toLowerCase());
-          }
-          if (value.location) {
-            return event.location
-              .toLowerCase()
-              .includes(value.location.toLowerCase());
-          }
-          return true;
-        }).slice(0, this.pageSize)
+    this.eventService
+      .findAll()
+      .pipe(
+        map((events) =>
+          events
+            .filter((event) => {
+              if (value.name) {
+                return event.name
+                  .toLowerCase()
+                  .includes(value.name.toLowerCase());
+              }
+              if (value.venue) {
+                return event.venue
+                  .toLowerCase()
+                  .includes(value.venue.toLowerCase());
+              }
+              if (value.location) {
+                return event.location
+                  .toLowerCase()
+                  .includes(value.location.toLowerCase());
+              }
+              return true;
+            })
+            .slice(0, this.pageSize)
+        )
       )
-    ).subscribe((events) => {
-        console.log('search events', events);
-        
-      this.events$.next(events);
-    });
+      .subscribe((events) => {
+        this.events$.next(events);
+      });
   }
 }

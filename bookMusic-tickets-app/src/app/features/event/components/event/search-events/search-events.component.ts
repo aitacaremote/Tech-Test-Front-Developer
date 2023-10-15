@@ -38,7 +38,6 @@ export class SearchEventsComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.filterForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value) => {
-        console.log('value', value);
         this.onSearch.emit(value);
     });
   }

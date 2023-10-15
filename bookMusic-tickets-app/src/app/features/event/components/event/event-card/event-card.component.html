@@ -1,4 +1,7 @@
-<mat-card class="p-6 bg-white shadow-xlrounded-[28px] border border-[#82D7DE] cursor-pointer" (click)="click()">
+<mat-card
+  class="p-6 bg-white shadow-xlrounded-[28px] border border-[#82D7DE] cursor-pointer"
+  (click)="click()"
+>
   <mat-card-header>
     <div mat-card-avatar class="w-16 cover">
       <img
@@ -8,16 +11,16 @@
       />
     </div>
     <mat-card-title>{{ event.name }}</mat-card-title>
-    <mat-card-subtitle >
-      <p>{{ $any(event.date) | timestampToDate }}</p>
-      <p>{{ event.venue }}, {{ event.location }}</p>
+    <mat-card-subtitle>
+      <p><span class="text-[#2196f3]">Date:</span> {{ $any(event.date) | timestampToDate }}</p>
+      <p><span class="text-[#2196f3]">Venue:</span> {{ event.venue }}</p>
+      <p><span class="text-[#2196f3]">Location:</span>{{ event.location }}</p>
     </mat-card-subtitle>
   </mat-card-header>
 
   <mat-divider class="mt-5"></mat-divider>
-  
+
   <mat-card-content [title]="event.description" class="my-4">
-    {{
-      event.description}}
+    {{ event.description }}
   </mat-card-content>
 </mat-card>
