@@ -1,0 +1,16 @@
+<div class="container">          
+    <form [formGroup]="form" (ngSubmit)="submit()">  
+            
+        <div class="form-group">  
+            <label for="website">Website:</label>  
+            <select formControlName="website" class="form-control" (change)="changeWebsite($event)">  
+                <option disabled>Select Website</option>  
+                <option>Choose Website</option>  
+                <option *ngFor="let web of websiteList">{{web}}</option>  
+            </select>  
+            <div *ngIf="f?.website?.touched && f?.website?.invalid" class="alert alert-danger">  
+            </div>  
+        </div>  
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>  
+    </form>  
+</div>  

@@ -23,3 +23,15 @@ During development, create at least three commits to show how you manage version
 
 ## Documentation
 Update README.md to include instructions on how to run and test your webpage and any additional functionality you have implemented.
+
+
+## Application Decision
+As implementation decision syncfusion has been chosen.
+
+## Generate Component
+ng generate component application-page-form
+
+ng generate component application-page-form --dryrun
+
+## In order to Start Application
+npm run start
