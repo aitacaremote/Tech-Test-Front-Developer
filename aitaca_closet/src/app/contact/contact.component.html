@@ -1,1 +1,27 @@
-<p>contact works!</p>
+<header>
+  <app-menu></app-menu>
+</header>
+<body>
+  <div class="container">
+    <h2 class="title">Formulario de Contacto</h2>
+    <form class="form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label class="label" for="nombre">Nombre:</label>
+        <input class="input" type="text" id="nombre" formControlName="nombre">
+      </div>
+      <div class="form-group">
+        <label class="label" for="email">Email:</label>
+        <input class="input" type="email" id="email" name="email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label class="label" for="telefono">Teléfono:</label>
+        <input class="input" type="number" id="telefono" name="telefono" formControlName="telefono">
+      </div>
+      <div class="form-group">
+        <label class="label" for="mensaje">Mensaje:</label>
+        <textarea class="textarea" id="mensaje" formControlName="mensaje"></textarea>
+      </div>
+      <button  type="submit" value="Enviar" [disabled]="!contactForm.valid" class="submit-button">Enviar</button>
+    </form>
+  </div>
+</body>
