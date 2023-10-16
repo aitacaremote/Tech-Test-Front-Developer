@@ -31,39 +31,11 @@ export class MediapipeService {
       throw new Error("Image classifier is not initialized.");
     }
 
-    if (this.runningMode === "VIDEO") {
-      this.runningMode = "IMAGE";
-      await this.imageClassifier.setOptions({ runningMode: "IMAGE" });
-    }
+    this.runningMode = "IMAGE";
+    await this.imageClassifier.setOptions({ runningMode: "IMAGE" });
 
     const classificationResult = this.imageClassifier.classify(imageElement);
     const classifications = classificationResult.classifications;
-    const classificationData = {
-      category: classifications[0].categories[0].categoryName,
-      confidence: Math.round(classifications[0].categories[0].score) * 100,
-    };
-
-    return classificationData;
-  }
-
-  public async classifyVideoFrame(videoElement: HTMLVideoElement) {
-    if (!this.imageClassifier) {
-      throw new Error("Image classifier is not initialized.");
-    }
-
-    if (this.runningMode === "IMAGE") {
-      this.runningMode = "VIDEO";
-      await this.imageClassifier.setOptions({ runningMode: "VIDEO" });
-    }
-
-    const startTimeMs = performance.now();
-    const classificationResult = this.imageClassifier.classifyForVideo(
-      videoElement,
-      startTimeMs
-    );
-    const classifications = classificationResult.classifications;
-    // classificationResult.close();
-
     const classificationData = {
       category: classifications[0].categories[0].categoryName,
       confidence: Math.round(classifications[0].categories[0].score) * 100,

@@ -15,7 +15,7 @@ describe("Given the MediapipeService", () => {
     expect(service).toBeTruthy();
   });
 
-  describe("When classifyImage is called", () => {
+  describe("When classifyImage is called and imageClassifier is not false", () => {
     it("should classify an image", async () => {
       service.imageClassifier = {
         classify: jasmine.createSpy().and.returnValue({
@@ -32,6 +32,21 @@ describe("Given the MediapipeService", () => {
       expect(service.imageClassifier.classify).toHaveBeenCalledWith(
         imageElement
       );
+    });
+  });
+  describe("When classifyImage is called and imageClassifier is false", () => {
+    beforeEach(() => {
+      service.imageClassifier = undefined;
+    });
+    it("should classify an image", async () => {
+      const imageElement = document.createElement("img");
+      try {
+        await service.classifyImage(imageElement);
+        fail("Expected an exception to be thrown.");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        expect(error.message).toBe("Image classifier is not initialized.");
+      }
     });
   });
 });

@@ -34,7 +34,6 @@ export class StoreService {
     const updatedGarments = this.garments$.value.map((item) => {
       return item.id !== garment.id ? item : garment;
     });
-    console.log(updatedGarments);
     this.garments$.next(updatedGarments);
   }
 }
