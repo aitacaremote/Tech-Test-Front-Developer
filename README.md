@@ -25,7 +25,7 @@ During development, create at least three commits to show how you manage version
 Update README.md to include instructions on how to run and test your webpage and any additional functionality you have implemented.
 
 ## bookMusic-tickets-app
- - First check the path of project are you in 'bookMusic-tickets-app' or not
+ - make sure you are in 'bookMusic-tickets-app'
  - make sure of node version i'm using v18.16.0
  - run npm i
  - run ng serve
