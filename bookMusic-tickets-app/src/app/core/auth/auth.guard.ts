@@ -13,8 +13,12 @@ export class AuthGuard {
     private toastr: ToastrService
   ) {}
 
+  /**
+   * Determines if the user can activate the current route.
+   *
+   * @return {boolean} Returns true if the user can activate the route, false otherwise.
+   */
   canActivate() {
-    
     if (this.authService.isLoggedIn) {
       this.router.navigate(['/p/events']);
       return false;

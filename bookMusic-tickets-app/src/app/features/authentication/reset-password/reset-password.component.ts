@@ -25,7 +25,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
     MatButtonModule,
     MatCardModule,
     RouterLink,
-    NgIf
+    NgIf,
   ],
 })
 export class ResetPasswordComponent implements OnInit {
@@ -39,6 +39,12 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
+  /**
+   * Sends a reset link to the user's email if the reset form is valid.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   sendResetLink() {
     if (this.resetForm.valid) {
       this.authService.ForgotPassword(this.resetForm.value.email);

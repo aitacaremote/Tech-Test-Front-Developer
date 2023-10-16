@@ -42,6 +42,11 @@ export class LoginComponent implements OnInit {
     this.createLoginForm();
   }
 
+  /**
+   * Create a login form with email and password fields.
+   *
+   * @return {void} This function does not return any value.
+   */
   createLoginForm() {
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.pattern(EMAIL_PATTERN)),
@@ -56,6 +61,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Logs in the user.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   login() {
     if (this.loginForm.valid) {
       this.authService.SignIn(

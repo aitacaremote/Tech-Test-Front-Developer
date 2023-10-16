@@ -29,7 +29,7 @@ export class AuthService {
 
     public router: Router,
 
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {}
 
   // Sign in with email/password
@@ -160,8 +160,13 @@ export class AuthService {
     });
   }
 
-  // Sign out
-
+  /**
+   * Signs out the user by calling the `signOut` method of `afAuth` and performs the following actions:
+   *  - Removes the 'client' item from local storage
+   *  - Navigates to the '/login' route
+   *
+   * @return {Promise<void>} - A promise that resolves when the user is successfully signed out
+   */
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('client');

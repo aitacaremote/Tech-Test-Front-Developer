@@ -13,8 +13,12 @@ export class UnAuthGuard {
     private toastr: ToastrService
   ) {}
 
+  /**
+   * Determines whether the user can access a particular route.
+   *
+   * @return {boolean} - True if the user is logged in, false otherwise.
+   */
   canActivate() {
-    
     if (!this.authService.isLoggedIn) {
       this.router.navigate(['/login']);
       return false;

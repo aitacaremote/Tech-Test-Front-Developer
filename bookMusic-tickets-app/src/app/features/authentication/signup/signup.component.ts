@@ -43,6 +43,11 @@ export class SignUpComponent implements OnInit {
     this.createForm();
   }
 
+  /**
+   * Create a signup form with validation rules for display name, email, password, and confirm password.
+   *
+   * @return {void}
+   */
   createForm() {
     this.signupForm = this.fb.group(
       {
@@ -67,6 +72,12 @@ export class SignUpComponent implements OnInit {
     );
   }
 
+  /**
+   * Sign up a user.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   signup() {
     if (this.signupForm.valid) {
       this.authService.SignUp(

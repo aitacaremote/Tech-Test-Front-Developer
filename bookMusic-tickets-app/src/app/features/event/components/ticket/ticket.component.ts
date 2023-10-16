@@ -74,6 +74,9 @@ export class TicketComponent implements OnDestroy {
     this.destroy$.complete();
   }
 
+  /**
+   * Buys a ticket.
+   */
   buyTicket() {
     const ticketId: string = uuidv4();
     this.ticketService.addTicket({

@@ -51,6 +51,11 @@ export class EventListComponent implements OnDestroy {
     this.destroy$.complete();
   }
 
+  /**
+   * Handles a page event.
+   *
+   * @param {PageEvent} e - The page event to handle.
+   */
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.count = e.length;
@@ -72,6 +77,11 @@ export class EventListComponent implements OnDestroy {
       });
   }
 
+  /**
+   * Handles the search based on the provided value.
+   *
+   * @param {any} value - The value to search for.
+   */
   handleSearch(value) {
     this.eventService
       .findAll()
@@ -105,6 +115,12 @@ export class EventListComponent implements OnDestroy {
       });
   }
 
+  /**
+   * Click handler for an event.
+   *
+   * @param {any} eventId - The ID of the event.
+   * @return {void} This function does not return anything.
+   */
   click(eventId) {
     this.router.navigateByUrl(`/p/events/${eventId}`);
   }
