@@ -3,4 +3,4 @@
   </webcam>
 </div>
 <p>Para subir una prenda, apunta a la prenda que deseas capturar y luego haz clic en el botón 'Capturar'</p>
-<button (click)="triggerSnapshot()" mat-raised-button color="primary">Capturar</button>
+<button (click)="triggerSnapshot()" mat-raised-button [ngClass]="'custom-button'" color="primary">Capturar</button>

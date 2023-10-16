@@ -4,12 +4,13 @@
   flex-direction: column;
   .container-card {
     padding: 1.5rem;
-    width: 80%;
+    width: 60%;
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 2px;
-    background-color: rgba(255, 255, 255, 0.616);
+    background-color: #f8c3cd67;
+    box-shadow: 2px 2px 20px black;
     .img-garment {
       width: 50%;
       height: auto;
@@ -20,6 +21,13 @@
     }
     h3 {
       font-weight: 500;
+    }
+    .container-incons {
+      display: flex;
+      gap: 1rem;
+      span {
+        cursor: pointer;
+      }
     }
   }
 }

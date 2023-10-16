@@ -30,6 +30,6 @@
     <mat-error *ngIf="clothesForm.get('price')!.invalid && clothesForm.get('price')!.touched">El precio es
       requerido</mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="clothesForm.invalid">Añadir</button>
+  <button mat-raised-button [ngClass]="'custom-button'" color="primary" [disabled]="clothesForm.invalid">Añadir</button>
 </form>
 <cloth-modal *ngIf="modalIsOpen" [garment]="garment" (isOpen)="closeModal($event)"></cloth-modal>

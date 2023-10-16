@@ -18,4 +18,23 @@ export class StoreService {
   setGarments(garments: Clothes[]) {
     this.garments$.next(garments);
   }
+
+  addGarment(garment: Clothes) {
+    this.setGarments([...this.garments$.value, garment]);
+  }
+
+  deleteGarment(garment: Clothes) {
+    const updatedGarments = this.garments$.value.filter(
+      (item) => item.id !== garment.id
+    );
+    this.garments$.next(updatedGarments);
+  }
+
+  updateGarment(garment: Clothes) {
+    const updatedGarments = this.garments$.value.map((item) => {
+      return item.id !== garment.id ? item : garment;
+    });
+    console.log(updatedGarments);
+    this.garments$.next(updatedGarments);
+  }
 }

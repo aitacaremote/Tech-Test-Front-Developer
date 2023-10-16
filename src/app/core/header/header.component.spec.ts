@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { FormComponent } from "src/app/clothes/form/form.component";
@@ -15,6 +16,7 @@ describe("HeaderComponent", () => {
       declarations: [HeaderComponent, MenuComponent],
       imports: [
         AppRoutingModule,
+        MatIconModule,
         RouterModule.forRoot([
           { path: "clothes/all", component: FormComponent },
         ]),

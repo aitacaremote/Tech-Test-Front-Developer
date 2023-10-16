@@ -18,6 +18,15 @@
   img {
     width: 50%;
   }
+  .custom-button {
+    background-color: #f85371;
+    color: white;
+  }
+  .custom-button:disabled {
+    background-color: #f85371;
+    opacity: 0.2;
+    color: white;
+  }
 }
 
 .disabled {

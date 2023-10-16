@@ -1,21 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MenuComponent } from './menu.component';
+import { MatIconModule } from "@angular/material/icon";
+import { MenuComponent } from "./menu.component";
 
-describe('MenuComponent', () => {
+describe("MenuComponent", () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MenuComponent]
+      declarations: [MenuComponent],
+      imports: [MatIconModule],
     });
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
