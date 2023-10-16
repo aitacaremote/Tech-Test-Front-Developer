@@ -6,5 +6,6 @@ export interface ITicket {
 }
 
 export interface Ibasket {
+  id: string;
   ticketId: string;
 }

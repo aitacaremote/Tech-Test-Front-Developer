@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
-  FormControl,
   Validators,
   FormBuilder,
 } from '@angular/forms';

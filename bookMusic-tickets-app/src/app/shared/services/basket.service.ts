@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IEvent, ITicket, Ibasket } from '../models';
-import { BehaviorSubject, Observable, filter, from, map, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  from,
+  map,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Injectable({
@@ -10,48 +16,51 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 export class BasketService {
   userId: string;
   events$ = new BehaviorSubject<IEvent[]>([]);
+  tickets: ITicket[] = [];
   constructor(private afs: AngularFirestore, private auth: AuthService) {
-    this.auth.currentUser$.subscribe((user) => {
-      this.userId = user?.uid;
-    });
-    this.findAll().pipe(
-      switchMap((baskets) => {
-        return this.afs
-          .collection<ITicket>('tickets')
-          .ref.where(
-            'id',
-            'in',
-            baskets.map((basket) => basket.ticketId)
-          )
-          .get();
-      }),
-      map((ticketsDoc) => {
-        return ticketsDoc.docs.map((ticket) => ticket.data());
-      }),
-      switchMap((ticket) => {
-        return this.afs
-          .collection<IEvent>('events')
-          .ref.where(
-            'id',
-            'in',
-            ticket.map((ticket) => ticket.eventId)
-          )
-          .where('userId', 'in', this.userId)
-          .get();
-      }),
-      map((eventsDoc) => {
-        return eventsDoc.docs.map((event) => event.data());
-      })
-    ).subscribe((events) => {
-      this.events$.next(events);
-    });
   }
 
   findAll() {
     return this.afs.collection<Ibasket>('basket').valueChanges();
   }
 
+  updateBasekt() {
+    return this.findAll()
+      .pipe(
+        switchMap((baskets) => {
+          const ticketIds = baskets.map((basket) => basket.ticketId);
+
+          return this.afs
+            .collection<ITicket>('tickets')
+            .ref.where('id', 'in', ticketIds)
+            .get();
+        }),
+        switchMap((ticketsDoc) => {
+          const user = this.auth.currentUser$;
+          this.tickets = ticketsDoc.docs.flatMap((ticket) => ticket.data());
+
+          return user;
+        }),
+        switchMap((user) => {
+          const ticketsByUser = this.tickets
+            .filter((ticket) => ticket.userId === user.uid)
+            .map((ticket) => ticket.eventId);
+          return this.afs
+            .collection<IEvent>('events')
+            .ref.where('id', 'in', ticketsByUser)
+            .get();
+        }),
+        map((eventsDoc) => {
+          return eventsDoc.docs.map((event) => event.data());
+        }),
+        tap((events) => {
+          this.events$.next(events);
+        })
+      )
+  }
+
   addInBasket(basket: Ibasket) {
+    this.updateBasekt().subscribe();
     return from(this.afs.collection<Ibasket>('basket').add(basket));
   }
 }

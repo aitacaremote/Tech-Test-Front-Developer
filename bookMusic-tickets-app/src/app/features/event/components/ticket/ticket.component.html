@@ -1,18 +1,16 @@
 <ng-container *ngIf="event$ | async as event">
-  <div class="bg-[#0001] h-full w-full text-center">
+  <mat-card class="bg-[#0001] lg:pt-3 w-full text-center">
     <div class="py-3">
-      <h1 class="font-serif font-bold text-[#2196f3]">
+      <mat-card-title class="font-serif font-bold text-[#2196f3]">
         {{ event.pack.type }} - {{ event.name }}
-      </h1>
+      </mat-card-title>
     </div>
-    <div>
-      <h2>
-        <span class="text-[12px] font-semibold">{{
-          $any(event.date) | timestampToDate
-        }}</span>
-        <span class="text-[12px] ml-2">{{ event.pack.price }} $</span>
-      </h2>
-    </div>
+    <mat-card-subtitle>
+      <span class="font-semibold">{{
+        $any(event.date) | timestampToDate
+      }}</span>
+      <span class="ml-2">{{ event.pack.price }} $</span>
+    </mat-card-subtitle>
     <div class="flex justify-center py-5 cover">
       <img
         [src]="
@@ -21,19 +19,19 @@
       />
     </div>
     <div class="flex justify-center py-5">
-      <p class="w-[80%] mx-auto font-serif">
+      <mat-card-content class="w-[80%] text-[12px] lg:text-[16px] mx-auto font-serif">
         {{ event.description }}
-      </p>
+      </mat-card-content>
     </div>
 
-    <div class="flex justify-center py-5" *ngIf="isTicketBought$ | async">
+    <div class="flex justify-center py-5" *ngIf="!(isTicketBought$ | async)">
       <button
         mat-raised-button
-        class="text-[#fafafa] font-bold rounded-full bg-[#2196f3] w-[20%] mx-auto"
+        class="text-[#fafafa] font-bold rounded-full bg-[#2196f3] w-[30%] lg:w-[20%] mx-auto"
         (click)="buyTicket()"
       >
         Buy Ticket
       </button>
     </div>
-  </div>
+  </mat-card>
 </ng-container>

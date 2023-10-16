@@ -1,7 +1,8 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { BasketService } from 'src/app/shared/services/basket.service';
 
 @Component({
   selector: 'app-private-layout',
@@ -16,5 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   </div>`,
   styleUrls: ['./private-layout.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  providers: [BasketService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivateLayoutComponent {}

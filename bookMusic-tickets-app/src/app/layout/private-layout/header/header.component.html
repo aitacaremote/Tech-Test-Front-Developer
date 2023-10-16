@@ -8,15 +8,14 @@
       </p>
       <p class="text-[#2196f3] flex justify-center pr-4">{{ user.email }}</p>
     </div>
-    <div class="flex">
-      <div class=" mr-[10px] mt-[5px]">
+    <div class="flex" style="border-right: 1px solid #000">
+      <div class="relative mr-[10px] mt-[5px]">
         <button [matMenuTriggerFor]="menuTrigger">
-          <mat-icon class="!h-[auto] !w-[fit-content] text-[#1E3A8A]"
+          <mat-icon class="h-[auto] w-[fit-content] text-[#1E3A8A]"
             >shopping_cart</mat-icon
           >
         </button>
         <span
-          *ngIf="(events$ | async)?.length !== 0"
           class="panier-count bg-red-500 text-white text-xs rounded-full justify-center flex w-[15px] h-[15px] top-[-10px] font-semibold absolute left-0"
           style="align-items: center"
           >{{ (events$ | async)?.length }}</span
@@ -39,9 +38,7 @@
                 >{{ (events$ | async)?.length }}</span
               >
             </div>
-            <div
-              *ngFor="let item of (events$ | async) || []"
-            >
+            <div *ngFor="let item of (events$ | async) || []">
               <div
                 class="flex justify-between px-1 border-b item align-center"
                 style="align-items: center"
@@ -66,8 +63,8 @@
               *ngIf="(events$ | async)?.length === 0"
               class="text-xs text-gray-500 p-2 flex gap-1 !font-bold"
               style="align-items: center"
-              ><mat-icon class="text-[#1E3A8A]">shopping_cart</mat-icon> panier
-              vide !</small
+              ><mat-icon class="text-[#1E3A8A]">shopping_cart</mat-icon> empty
+              basket !</small
             >
           </div>
         </mat-menu>

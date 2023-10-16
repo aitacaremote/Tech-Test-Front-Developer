@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { IEvent } from 'src/app/shared/models';
 import { TimestampToDatePipe } from 'src/app/shared/pipes';
 import { MatDividerModule } from '@angular/material/divider';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-card',
@@ -38,9 +37,5 @@ import { Router } from '@angular/router';
 export class EventCardComponent {
   @Input() event!: IEvent;
 
-  constructor(private router: Router) {}
-
-  click() {
-    this.router.navigateByUrl(`/p/events/${this.event.id}`);
-  }
+  constructor() {}
 }

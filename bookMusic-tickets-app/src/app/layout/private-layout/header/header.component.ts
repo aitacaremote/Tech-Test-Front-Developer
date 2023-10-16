@@ -1,12 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import firebase from 'firebase/compat/app';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { BasketService } from 'src/app/shared/services/basket.service';
-import { BehaviorSubject, mergeMap } from 'rxjs';
+import {
+  Subject, takeUntil,
+} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +16,19 @@ import { BehaviorSubject, mergeMap } from 'rxjs';
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
+  destroy$ = new Subject<void>();
   userData$ = this.authService.currentUser$;
   events$ = this.basketService.events$;
   constructor(
     private authService: AuthService,
-    private basketService: BasketService,
+    private basketService: BasketService
   ) {
+    this.basketService.updateBasekt().pipe(takeUntil(this.destroy$)).subscribe();
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   signOut() {

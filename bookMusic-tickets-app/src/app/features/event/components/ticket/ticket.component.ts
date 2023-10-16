@@ -3,26 +3,36 @@ import { TicketService } from '../../services/tickets.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { EventsService } from '../../services/events.service';
-import { BehaviorSubject, Observable, Subject, takeUntil, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  filter,
+  switchMap,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { IEvent } from 'src/app/shared/models';
 import { TimestampToDatePipe } from 'src/app/shared/pipes/timestamp-to-date.pipe';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { BasketService } from 'src/app/shared/services/basket.service';
+import { v4 as uuidv4 } from 'uuid';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [TimestampToDatePipe, NgIf, AsyncPipe],
+  imports: [TimestampToDatePipe, NgIf, AsyncPipe, MatCardModule],
   providers: [TicketService],
   templateUrl: './ticket.component.html',
 })
 export class TicketComponent implements OnDestroy {
   destroy$ = new Subject<void>();
-  event$ = new BehaviorSubject<IEvent>(null);
+  event$: Observable<IEvent>;
   eventId: string;
   userId: string;
-  isTicketBought$: Observable<boolean>;
+  isTicketBought$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private ticketService: TicketService,
@@ -35,17 +45,29 @@ export class TicketComponent implements OnDestroy {
     this.route.params.subscribe((params) => {
       this.eventId = params['id'];
 
-      this.eventService.findOne(this.eventId).subscribe((event) => {
-        console.log('event', event);
-
-        this.event$.next(event);
+      this.event$ = this.eventService.findOne(this.eventId);
+    });
+    this.authSerive.currentUser$
+      .pipe(
+        filter((user) => !!user),
+        tap((user) => {
+          this.userId = user.uid;
+        }),
+        switchMap((user) =>
+          this.ticketService.isTicketAvailable(this.eventId, user.uid)
+        ),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((isTicketBought) => {
+        this.isTicketBought$.next(isTicketBought);
       });
-    });
-    this.authSerive.currentUser$.subscribe((user) => {
-      this.userId = user?.uid;
-    });
 
-    this.isTicketBought$ = this.ticketService.isTicketAvailable(this.eventId);
+    this.ticketService
+      .isTicketAvailable(this.eventId, this.userId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((isTicketAvailable) => {
+        this.isTicketBought$.next(isTicketAvailable);
+      });
   }
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -53,19 +75,20 @@ export class TicketComponent implements OnDestroy {
   }
 
   buyTicket() {
+    const ticketId: string = uuidv4();
+    this.ticketService.addTicket({
+      id: ticketId,
+      userId: this.userId,
+      eventId: this.eventId,
+      createdAt: new Date(),
+    });
     this.ticketService
-      .addTicket({
-        userId: this.userId,
-        eventId: this.eventId,
-        createdAt: new Date(),
-      })
-      .pipe(
-        takeUntil(this.destroy$),
-      ).subscribe((ticket) => {
-        console.log('ticket', ticket);
-          
-        this.basketService.addInBasket({ ticketId: ticket.id });
+      .isTicketAvailable(this.eventId, this.userId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((isTicketAvailable) => {
+        this.isTicketBought$.next(isTicketAvailable);
       });
+    this.basketService.addInBasket({ id: uuidv4(), ticketId: ticketId });
     this.toastr.success('Ticket bought successfully');
   }
 }
