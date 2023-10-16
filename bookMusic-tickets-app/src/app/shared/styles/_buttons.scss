@@ -1,0 +1,66 @@
+.btn {
+  border-radius: 29px;
+  padding: 0 18px;
+  cursor: pointer;
+  background: transparent
+    linear-gradient(269deg, $unnamed-color-1b478e 0%, #0e2447 100%) 0% 0%
+    no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  color: white;
+  font: $unnamed-font-style-normal normal $unnamed-font-weight-600 0.625rem
+    Montserrat;
+  text-align: center;
+  letter-spacing: 2.18px;
+  color: #ffffff;
+  text-transform: uppercase;
+
+  &--sm {
+    padding: .5rem .625rem;
+  }
+
+  &-invert {
+    background: #fff;
+    color: #0e2447;
+  }
+
+  &-postponned {
+    background: #d2c000;
+  }
+
+  &-yes {
+    background: #15A10B;
+  }
+
+  &-no {
+    background: #D51111;
+  }
+
+  &--control-add {
+    border-radius: 15px;
+    border: 2px solid $unnamed-color-00c2d1;
+    padding: 0;
+    width: 37px;
+    height: 39px;
+    mat-icon {
+      font-size: 20px;
+    }
+  }
+
+  &--pause {
+    background: transparent linear-gradient(180deg, #80bf00 0%, #c3ce2f 100%) 0%
+      0% no-repeat padding-box;
+  }
+
+  &--file {
+    background: #00c2d1 0% 0% no-repeat padding-box;
+    color: #fff;
+    // border: 1px solid #79D4DC;
+    border-radius: 0px 15px 15px 0px;
+  }
+}
+
+.radio-btn {
+  height: 10px;
+  padding: 0;
+  margin: 3px 2px;
+}

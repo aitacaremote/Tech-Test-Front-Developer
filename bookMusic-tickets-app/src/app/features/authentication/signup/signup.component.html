@@ -1,0 +1,77 @@
+<form [formGroup]="signupForm">
+  <div class="grid">
+    <div class="col-12">
+      <div class="flex card justify-content-center">
+        <mat-card [style]="{ width: '360px' }">
+          <mat-card-header class="flex justify-center mt-3">
+            <mat-card-title class="text-[#2196f3]">Sign up</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="flex justify-center mt-3">
+              <mat-form-field class="w-100">
+                <mat-label>Username</mat-label>
+                <input
+                  matInput
+                  formControlName="displayName"
+                  type="text"
+                  placeholder="Username"
+                />
+                <mat-error>{{ "Username is not valid" }}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex justify-center mt-3">
+              <mat-form-field class="w-100">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  type="text"
+                  placeholder="Email"
+                />
+                <mat-error>{{ "Email is not valid" }}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex justify-center mt-3">
+              <mat-form-field class="w-100">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  formControlName="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <mat-error
+                  >{{ "Passwords is not valid" }}</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="flex justify-center mt-3">
+              <mat-form-field class="w-100">
+                <mat-label>Confirm Password</mat-label>
+                <input
+                  matInput
+                  formControlName="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+                <mat-error
+                  >{{ "Passwords do not match" }}</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-actions class="flex justify-center">
+            <button mat-raised-button color="primary" (click)="signup()">
+              Sign up
+            </button>
+          </mat-card-actions>
+          <mat-card-actions class="flex justify-center mx-3 my-3">
+            <a class="text-[#2196f3]" routerLink="/login"
+              >Already have an account? Click Here</a
+            >
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</form>

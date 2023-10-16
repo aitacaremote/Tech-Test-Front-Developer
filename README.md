@@ -23,3 +23,11 @@ During development, create at least three commits to show how you manage version
 
 ## Documentation
 Update README.md to include instructions on how to run and test your webpage and any additional functionality you have implemented.
+
+## bookMusic-tickets-app
+ - make sure you are in 'bookMusic-tickets-app'
+ - make sure of node version i'm using v18.16.0
+ - run npm i
+ - run ng serve
+ - go to sign up page and enter existing e-mail because you'll receiving an verfication email in your account
+ - to run testing run ng test

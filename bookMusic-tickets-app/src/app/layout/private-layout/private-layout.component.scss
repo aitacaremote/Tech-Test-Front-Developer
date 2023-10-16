@@ -1,0 +1,20 @@
+.image-layout {
+  background-image: url("../../../assets/images/event-banner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%; /* Add relative positioning to create a context for absolute positioning */
+
+  /* Style for the "Stage" title */
+  &::before {
+    content: "Stage";
+    font-family: 'Nixie One', sans-serif;
+    position: absolute;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 300;
+    margin: 0;
+    top: 20px;
+    left: 20px;
+  }
+}

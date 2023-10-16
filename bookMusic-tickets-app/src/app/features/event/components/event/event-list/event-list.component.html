@@ -1,0 +1,16 @@
+<app-search-events (onSearch)="handleSearch($event)"/>
+<ng-container *ngIf="events$ | async as events">
+  <div class="grid grid-cols-1 mt-3 md:grid-cols-2 gap-x-9 gap-y-3 lg:grid-cols-2">
+    <ng-container *ngFor="let event of events$ | async">
+      <app-event-card (click)="click(event.id)" [event]="event" />
+    </ng-container>
+  </div>
+  <mat-paginator
+    class="mt-5"
+    [length]="count"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    (page)="handlePageEvent($event)"
+    [pageSizeOptions]="pageSizeOptions"
+  ></mat-paginator>
+</ng-container>
