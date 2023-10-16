@@ -28,7 +28,6 @@ Update README.md to include instructions on how to run and test your webpage and
 ## Generate Component
 ng generate component [componentName]
 
-ng generate component [componentName] --dryrun
 
 ## In order to Start Application
 npm run start
