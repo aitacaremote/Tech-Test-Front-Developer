@@ -15,8 +15,6 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { MatPaginatorIntl } from '@angular/material/paginator';
-import { MyCustomPaginatorIntl } from './app/shared/services/custom-paginator-init.service';
 
 if (envProd.production) {
   enableProdMode();
@@ -39,6 +37,5 @@ bootstrapApplication(AppComponent, {
       AngularFireAuthModule,
     ]),
     { provide: FIREBASE_OPTIONS, useValue: envDev.firebase },
-    {provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl}
   ],
 }).catch((err) => console.error(err));

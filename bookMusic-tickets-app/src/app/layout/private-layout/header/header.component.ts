@@ -4,20 +4,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import firebase from 'firebase/compat/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { BasketService } from 'src/app/shared/services/basket.service';
+import { BehaviorSubject, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatMenuModule, MatIconModule, AsyncPipe, NgIf],
+  imports: [MatMenuModule, MatIconModule, AsyncPipe, NgIf, NgFor],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {
   userData$ = this.authService.currentUser$;
-
-  constructor(private authService: AuthService) {
+  events$ = this.basketService.events$;
+  constructor(
+    private authService: AuthService,
+    private basketService: BasketService,
+  ) {
   }
 
   signOut() {

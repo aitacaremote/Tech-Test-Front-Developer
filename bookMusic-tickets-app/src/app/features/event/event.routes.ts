@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { EventComponent } from './event.component';
 import { EventListComponent } from './components/event/event-list/event-list.component';
-import { TicketListComponent } from './components/ticket/ticket-list/ticket-list.component';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 export default [
   {
@@ -13,8 +13,8 @@ export default [
         component: EventListComponent,
       },
       {
-        path: ':id/tickets',
-        component: TicketListComponent,
+        path: ':id',
+        component: TicketComponent,
 
       }
     ]

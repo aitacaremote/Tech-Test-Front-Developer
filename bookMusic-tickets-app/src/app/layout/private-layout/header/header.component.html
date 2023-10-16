@@ -2,27 +2,90 @@
   <div
     class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto"
   >
-    <div></div>
-    <div class="flex items-center md:order-2">
-      <div *ngIf="userData$ | async as user" class="">
-        <p class="text-[#2196f3] flex justify-center pr-4">{{ user.displayName }}</p>
-        <p class="text-[#2196f3] flex justify-center pr-4">{{ user.email }}</p>
-      </div>
-      <button mat-button class="flex" [matMenuTriggerFor]="menu">
-        <img
-          class="w-8 h-8 border-2 border-teal-500 border-solid rounded-full"
-          [src]="
-            'https://via.placeholder.com/100'
-          "
-        />
-        <mat-icon class="mr-2 align-middle transform scale-75 cursor-pointer"
-          >expand_more</mat-icon
+    <div *ngIf="userData$ | async as user" class="">
+      <p class="text-[#2196f3] flex justify-center pr-4">
+        {{ user.displayName }}
+      </p>
+      <p class="text-[#2196f3] flex justify-center pr-4">{{ user.email }}</p>
+    </div>
+    <div class="flex">
+      <div class=" mr-[10px] mt-[5px]">
+        <button [matMenuTriggerFor]="menuTrigger">
+          <mat-icon class="!h-[auto] !w-[fit-content] text-[#1E3A8A]"
+            >shopping_cart</mat-icon
+          >
+        </button>
+        <span
+          *ngIf="(events$ | async)?.length !== 0"
+          class="panier-count bg-red-500 text-white text-xs rounded-full justify-center flex w-[15px] h-[15px] top-[-10px] font-semibold absolute left-0"
+          style="align-items: center"
+          >{{ (events$ | async)?.length }}</span
         >
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Reservation</button>
-        <button mat-menu-item (click)="signOut()">logout</button>
-      </mat-menu>
+        <mat-menu
+          #menuTrigger="matMenu"
+          xPosition="after"
+          yPosition="above"
+          class="mt-5 w-[300px] !p-0"
+        >
+          <div class="panier-ctr">
+            <div
+              class="panier-header p-2 flex align-center justify-between border-b sticky top-0 bg-[#ffff]"
+            >
+              <h3 class="font-bold">Basket</h3>
+              <span
+                *ngIf="(events$ | async)?.length !== 0"
+                class="w-[18px] h-[18px] text-sm font-semibold text-red-700 bg-red-100 rounded-full panier-count flex"
+                style="align-items: center; justify-content: center"
+                >{{ (events$ | async)?.length }}</span
+              >
+            </div>
+            <div
+              *ngFor="let item of (events$ | async) || []"
+            >
+              <div
+                class="flex justify-between px-1 border-b item align-center"
+                style="align-items: center"
+              >
+                <div class="relative img-ctr">
+                  <span
+                    class="absolute top-1 bg-[#14B8A6] text-[#ffff] font-semibold text-xs px-2 rounded-full"
+                    >{{ item?.pack.type }}</span
+                  >
+                </div>
+                <div class="flex flex-col gap-1 item-details">
+                  <span class="num text-sm text-[#14B8A6] font-semibold">{{
+                    item?.name
+                  }}</span>
+                  <span class="price text-sm text-[#14B8A6] font-semibold"
+                    >{{ item?.pack.price }} USD</span
+                  >
+                </div>
+              </div>
+            </div>
+            <small
+              *ngIf="(events$ | async)?.length === 0"
+              class="text-xs text-gray-500 p-2 flex gap-1 !font-bold"
+              style="align-items: center"
+              ><mat-icon class="text-[#1E3A8A]">shopping_cart</mat-icon> panier
+              vide !</small
+            >
+          </div>
+        </mat-menu>
+      </div>
+      <div class="flex items-center md:order-2">
+        <button mat-button class="flex" [matMenuTriggerFor]="menu">
+          <img
+            class="w-8 h-8 border-2 border-teal-500 border-solid rounded-full"
+            [src]="'https://via.placeholder.com/100'"
+          />
+          <mat-icon class="mr-2 align-middle transform scale-75 cursor-pointer"
+            >expand_more</mat-icon
+          >
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="signOut()">logout</button>
+        </mat-menu>
+      </div>
     </div>
   </div>
 </nav>

@@ -1,8 +1,10 @@
 export interface ITicket {
-  id: number;
-  userId: number;
-  eventId: number;
-  ticketType: string;
-  quantity: number;
-  totalPrice: number;
+  id?: string;
+  userId: string;
+  eventId: string;
+  createdAt?: Date;
+}
+
+export interface Ibasket {
+  ticketId: string;
 }

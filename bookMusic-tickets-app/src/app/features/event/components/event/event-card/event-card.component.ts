@@ -41,6 +41,6 @@ export class EventCardComponent {
   constructor(private router: Router) {}
 
   click() {
-    this.router.navigateByUrl(`/p/events/${this.event.id}/tickets`);
+    this.router.navigateByUrl(`/p/events/${this.event.id}`);
   }
 }

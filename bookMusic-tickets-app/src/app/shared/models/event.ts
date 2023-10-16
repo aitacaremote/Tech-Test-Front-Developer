@@ -4,12 +4,11 @@ export interface IEvent {
   date: any;
   venue: string;
   location: string;
-  pack: string;
+  pack: IPack;
   description: string;
 }
 
 export interface IPack {
-  id: string;
   type: PackEnumType;
   price: number;
   amount: number;
