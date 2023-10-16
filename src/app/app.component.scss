@@ -1,11 +1,12 @@
 :host {
   main {
     width: 100%;
+    padding-block: 1rem;
     min-height: 83vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blanchedalmond;
+    background: linear-gradient(to bottom, #f8c3cd, #f79faf);
   }
 }

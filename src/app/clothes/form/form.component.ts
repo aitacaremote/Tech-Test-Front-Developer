@@ -11,19 +11,23 @@ import { clothesFormEmpty } from "src/utils/config";
 export class FormComponent {
   clothesForm: FormGroup = this.formBuilder.group(clothesFormEmpty);
   imgUrl = "";
+  modalIsOpen = true;
+  garment: { imgURL: string; type: ImageClassifierOutput } | null = null;
   constructor(public formBuilder: FormBuilder, private router: Router) {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state) {
-      const data = state as { imgURL: string; type: ImageClassifierOutput };
-      this.imgUrl = data.imgURL;
-      const type = data.type.category;
+      this.garment = state as { imgURL: string; type: ImageClassifierOutput };
+      this.imgUrl = this.garment.imgURL;
+      const type = this.garment.type.category;
       this.clothesForm.patchValue({
         type: type,
       });
-      console.log("desde form", type);
     }
   }
 
+  closeModal(value: boolean) {
+    this.modalIsOpen = value;
+  }
   handleSubmit() {
     console.log("object");
   }

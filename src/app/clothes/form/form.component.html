@@ -1,5 +1,5 @@
 <img *ngIf="imgUrl" [src]="imgUrl" alt="Imagen de la prenda">
-<form [formGroup]="clothesForm" (submit)="handleSubmit()">
+<form [ngClass]="{ 'disabled': modalIsOpen }" [formGroup]="clothesForm" (submit)="handleSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
     <input matInput formControlName="name">
@@ -32,3 +32,4 @@
   </mat-form-field>
   <button mat-raised-button color="primary" [disabled]="clothesForm.invalid">Añadir</button>
 </form>
+<cloth-modal *ngIf="modalIsOpen" [garment]="garment" (isOpen)="closeModal($event)"></cloth-modal>

@@ -1,0 +1,6 @@
+<img *ngIf="garment" [src]="garment.imgURL" alt="">
+<div *ngIf="garment">
+  <span>Nuestro sistema ha detectado que es una {{garment.type.category}}.</span>
+  <span>La fiabilidad es del {{garment.type.confidence}}%, si hubiese algun error puede cambiarla.</span>
+</div>
+<button (click)="closeModal()" mat-raised-button color="primary">Continuar</button>

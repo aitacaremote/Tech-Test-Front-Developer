@@ -1,0 +1,18 @@
+:host {
+  .menu-nav {
+    ul {
+      display: flex;
+      gap: 0.2rem;
+      padding: 5px;
+      li {
+        all: unset;
+        a {
+          all: unset;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

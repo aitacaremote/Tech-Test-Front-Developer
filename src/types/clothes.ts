@@ -4,4 +4,5 @@ export type Clothes = {
   color: string;
   size: string;
   price: number;
+  urlPhoto: string;
 };

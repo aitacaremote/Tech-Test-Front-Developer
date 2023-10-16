@@ -12,6 +12,7 @@ import { ClothingListComponent } from "./clothing-list/clothing-list.component";
 import { DetailsComponent } from "./details/details.component";
 import { FormComponent } from "./form/form.component";
 import { WebcamCaptureComponent } from "./webcam-capture-component/webcam..capture.component";
+import { ModalComponent } from './modal/modal.component';
 @NgModule({
   declarations: [
     ClothingListComponent,
@@ -19,6 +20,7 @@ import { WebcamCaptureComponent } from "./webcam-capture-component/webcam..captu
     FormComponent,
     DetailsComponent,
     WebcamCaptureComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,

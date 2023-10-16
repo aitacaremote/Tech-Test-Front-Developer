@@ -1,1 +1,7 @@
-<p>clothing-list works!</p>
+<ol *ngIf="garments">
+  <ng-container *ngFor="let garment of garments">
+    <li>
+      <cloth-card [garment]="garment"></cloth-card>
+    </li>
+  </ng-container>
+</ol>

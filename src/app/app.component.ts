@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { clothes } from "src/utils/clothes";
+import { StoreService } from "./services/store/store.service";
 
 @Component({
   selector: "cloth-root",
@@ -7,4 +9,7 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "ClothTagger";
+  constructor(private storeService: StoreService) {
+    this.storeService.setGarments(clothes);
+  }
 }
