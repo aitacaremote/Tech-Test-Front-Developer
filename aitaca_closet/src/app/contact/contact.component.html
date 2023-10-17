@@ -4,7 +4,7 @@
 <body class="contact">
   <div class="container">
     <h2 class="title">Formulario de Contacto</h2>
-    <form class="form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+    <form class="form" action="SendForm" [formGroup]="contactForm" (ngSubmit)="submitForm()">
       <div class="form-group">
         <label class="label" for="nombre">Nombre:</label>
         <input class="input" type="text" id="nombre" formControlName="nombre">
@@ -21,7 +21,7 @@
         <label class="label" for="mensaje">Mensaje:</label>
         <textarea class="textarea" id="mensaje" formControlName="mensaje"></textarea>
       </div>
-      <button  type="submit" value="Enviar" [disabled]="!contactForm.valid" class="submit-button">Enviar</button>
+      <button  type="submit" value="Enviar" class="submit-button">Enviar</button>
     </form>
   </div>
 </body>

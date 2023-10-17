@@ -21,15 +21,14 @@ export class ContactComponent {
   }
 
   submitForm() {
-    alert('enviandose el mensaje');
     if (this.contactForm.valid) {
       alert('Mensaje enviado')
       console.log('Formulario enviado:', this.contactForm.value);
       this.contactForm.reset();
     } else {
-      alert('Debe rellenar todos los campos antes de enviar')
+      alert('Debe rellenar correctamente todos los campos antes de enviar')
       console.log(
-        'El formulario no es válido. Por favor, complete todos los campos correctamente.'
+        'El formulario no es válido.'
       );
     }
   }
