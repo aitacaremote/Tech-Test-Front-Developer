@@ -1,0 +1,30 @@
+<header>
+  <app-menu></app-menu>
+</header>
+<body class="contact">
+  <div class="container">
+    <h2 class="title">Contact Form</h2>
+    <form class="form" action="SendForm" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label class="label" for="name">Name:</label>
+        <input class="input" type="text" id="name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label class="label" for="email">Email:</label>
+        <input class="input" type="email" id="email" name="email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label class="label" for="telephone">Phone contact:</label>
+        <input class="input" type="number" id="telephone" name="telephone" formControlName="telephone">
+      </div>
+      <div class="form-group">
+        <label class="label" for="message">Message:</label>
+        <textarea class="textarea" id="message" formControlName="message"></textarea>
+      </div>
+      <button  type="submit" value="send" class="submit-button">Send</button>
+    </form>
+  </div>
+</body>
+<footer>
+  <app-footer></app-footer>
+</footer>
