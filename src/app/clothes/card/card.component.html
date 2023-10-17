@@ -1,0 +1,12 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+
+<div class="container-card">
+  <img class="img-garment" [src]="garment.urlPhoto" alt="Foto de la prenda">
+  <h2>{{garment.name}}</h2>
+  <h3>{{garment.price}} €</h3>
+  <div class="container-incons">
+    <mat-icon (click)="handleUpdate()">info</mat-icon>
+    <mat-icon (click)="handleDelete()">delete_forever</mat-icon>
+  </div>
+</div>

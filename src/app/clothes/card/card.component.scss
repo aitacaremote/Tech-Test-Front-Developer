@@ -1,0 +1,34 @@
+:host {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  .container-card {
+    padding: 1.5rem;
+    width: 60%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: #f8c3cd67;
+    box-shadow: 2px 2px 20px black;
+    .img-garment {
+      width: 100%;
+      max-width: 365px;
+      object-fit: contain;
+    }
+    h2 {
+      font-size: 1.2emem;
+      font-weight: 600;
+    }
+    h3 {
+      font-weight: 500;
+    }
+    .container-incons {
+      display: flex;
+      gap: 1rem;
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+}

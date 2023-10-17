@@ -1,0 +1,31 @@
+:host {
+  padding-block: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    width: 50%;
+  }
+  .custom-button {
+    background-color: #f85371;
+    color: white;
+    padding: 10px;
+  }
+  .custom-button:disabled {
+    background-color: #f85371;
+    opacity: 0.2;
+    color: white;
+  }
+}
+
+.disabled {
+  opacity: 0.2;
+}
