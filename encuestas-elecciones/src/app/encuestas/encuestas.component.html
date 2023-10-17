@@ -1,0 +1,8 @@
+
+<form (ngSubmit)="enviarEncuesta()">
+    <mat-form-field>
+      <mat-label>A quién votas?</mat-label>
+      <input matInput [(ngModel)]="opcionSeleccionada" required>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Enviar</button>
+  </form>
