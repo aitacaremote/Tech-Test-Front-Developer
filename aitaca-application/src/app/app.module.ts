@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import { ApplicationPageFormComponent } from './application-page-form/application-page-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
 import { MatDialogModule } from '@angular/material/dialog';
-import { ApplicationRoutingSuccessDialogComponent } from './application-routing-success-dialog/application-routing-success-dialog.component';
 import { ApplicationSuccessPageComponent } from './application-success-page/application-success-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ApplicationPageFormComponent,
-    ApplicationRoutingSuccessDialogComponent,
     ApplicationSuccessPageComponent
   ],
   imports: [
@@ -21,7 +19,6 @@ import { ApplicationSuccessPageComponent } from './application-success-page/appl
     MatDialogModule,
     FormsModule,  
     ReactiveFormsModule,
-    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

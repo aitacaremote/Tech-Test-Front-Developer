@@ -20,7 +20,7 @@
             </div>
             <div [ngClass]="!(f?.website?.touched &&f?.website?.invalid) ? 'item' : 'alert-danger'">  
                 <label for="website">Website:</label>  
-                <select formControlName="website" class="form-control" (change)="changeWebsite($event)">  
+                <select formControlName="website" class="form-control" >  
                     <option disabled>Select Website</option>  
                     <option>Choose Website</option>  
                     <option *ngFor="let web of websiteList">{{web}}</option>  
@@ -31,6 +31,3 @@
         <button class="submit-button" type="submit" [disabled]="!form.valid">Submit</button>  
     </form>  
 </div>  
-<app-application-routing-success-dialog
-[website]="form?.value?.website?? ' ' ">
-</app-application-routing-success-dialog>

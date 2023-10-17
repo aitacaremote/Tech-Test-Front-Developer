@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-application-success-page',
@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./application-success-page.component.css']
 })
 export class ApplicationSuccessPageComponent {
-
 }
