@@ -1,25 +1,60 @@
-# Aitaca Frontend Developer Test
-## Context
-We are looking for a passionate Frontend Developer with outstanding skills to join our team. This test will evaluate your experience and aptitude in frontend development, especially in relation to our needs and objectives.
+# ClothTagger
 
-## General Instructions
-Fork this repository to your GitHub account. Complete the tasks described below. Once finished, create a Pull Request to this repository so that we can review your solution.
+ClothTagger es una aplicación web desarrollada en Angular que te permite gestionar y etiquetar prendas de vestir. Utiliza el servicio de MediaPipe para detectar automáticamente el tipo de prenda antes de añadirla a tu colección. Además, puedes agregar, modificar y eliminar prendas de manera sencilla.
 
-## Tasks: Responsive Interface
-Develop a responsive webpage using HTML, CSS, and Angular. This page should contain at least one form with validation, a couple of pages or three where routing is used, and some visual components (such as cards, buttons, among others).
+La aplicación cuenta con la funcionalidad de tomar fotos de las prendas directamente desde la cámara del dispositivo, lo que facilita la captura de imágenes de alta calidad para su etiquetado.
 
-Add at least one unit test that tests some of the developed functionalities.
+## Requisitos Previos
 
-### BONUS
+Asegúrate de tener instalado lo siguiente antes de ejecutar la aplicación:
 
-- Use of observables and some of their operators (map, filter, reduce…)
-- Use of Material
-- Ensure that your page is optimized for speed and scalability
-- Implement at least one security measure (such as protection against XSS or CSRF attacks).
-- (Optional): Access to the device’s camera and integration with some simple MediaPipe functionality (https://developers.google.com/mediapipe) on one of the pages
+- [Node.js](https://nodejs.org/)
+- [Angular CLI](https://angular.io/cli)
 
-## GitHub Collaboration
-During development, create at least three commits to show how you manage version control and organize your work. Make sure your code is well-commented and organized.
+## Instalación
 
-## Documentation
-Update README.md to include instructions on how to run and test your webpage and any additional functionality you have implemented.
+1. Clona el repositorio de ClothTagger:
+
+```bash
+   git clone https://github.com/MiguelA-Izquierdo/Tech-Test-Front-Developer
+```
+
+2. Dirígete a la rama en la que se encuentra el proyecto:
+
+```bash
+   git checkout feature/Miguel-Angel-Izquierdo
+```
+
+3. Instala las dependencias:
+
+```bash
+   npm install
+```
+
+## Uso
+
+1.Inicia la aplicación:
+
+```bash
+   ng serve
+```
+
+2. Abre tu navegador y ve a http://localhost:4200.
+
+3. Comienza a etiquetar tus prendas de vestir.
+
+## Pruebas Unitarias
+
+Las pruebas unitarias Jasmine están incluidas en los directorios de cada componente y servicio del proyecto. Puedes encontrar y ejecutar estas pruebas en los archivos con nombres que terminan en .spec.ts dentro de cada directorio correspondiente.
+
+Para ejecutar todas las pruebas, asegúrate de tener todas las dependencias instaladas y utiliza el siguiente comando:
+
+```bash
+   cd npm run test
+```
+
+## Caracteristicas
+
+\*Detección Automática: ClothTagger utiliza el servicio de MediaPipe para detectar automáticamente el tipo de prenda a partir de una imagen.
+
+\*Gestión de Prendas: Puedes agregar nuevas prendas, modificar información existente o eliminar prendas de tu colección.

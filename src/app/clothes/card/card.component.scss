@@ -12,8 +12,9 @@
     background-color: #f8c3cd67;
     box-shadow: 2px 2px 20px black;
     .img-garment {
-      width: 50%;
-      height: auto;
+      width: 100%;
+      max-width: 365px;
+      object-fit: contain;
     }
     h2 {
       font-size: 1.2emem;
