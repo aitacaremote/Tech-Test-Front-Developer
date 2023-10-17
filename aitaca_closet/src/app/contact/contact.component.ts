@@ -22,14 +22,12 @@ export class ContactComponent {
 
   submitForm() {
     if (this.contactForm.valid) {
-      alert('Mensaje enviado')
-      console.log('Formulario enviado:', this.contactForm.value);
+      alert('Message submited')
+      console.log('Form sended:', this.contactForm.value);
       this.contactForm.reset();
     } else {
-      alert('Debe rellenar correctamente todos los campos antes de enviar')
-      console.log(
-        'El formulario no es válido.'
-      );
+      alert('You must fill out all fields correctly before sending');
+      console.log('The form is not valid.');
     }
   }
 }
