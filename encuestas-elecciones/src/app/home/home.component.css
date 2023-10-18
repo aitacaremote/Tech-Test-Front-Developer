@@ -1,0 +1,14 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.contenedor-mapa-tabla{
+    display: flex;
+    gap:2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width:1300px) {
+    .contenedor-mapa-tabla{
+        flex-direction: column-reverse;
+       }
+}
