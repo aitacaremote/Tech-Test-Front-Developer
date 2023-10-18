@@ -1,0 +1,33 @@
+<div class="container">          
+    <form [formGroup]="form" (ngSubmit)="submit()">  
+        <div class="container">
+            <div [ngClass]="!(f?.name?.touched &&f?.name?.invalid) ? 'item' : 'alert-danger'">  
+                <label for="name">Name:</label>  
+                <textarea   formControlName="name" class="form-control"></textarea >  
+                
+            </div>
+            <div [ngClass]="!(f?.surname?.touched &&f?.surname?.invalid) ? 'item' : 'alert-danger'">  
+                <label for="surname">Surname:</label>  
+                <textarea   formControlName="surname" class="form-control"></textarea >  
+            </div> 
+            <div [ngClass]="!(f?.phoneNumber?.touched &&f?.phoneNumber?.invalid) ? 'item' : 'alert-danger'">  
+                <label for="phoneNumber">Phone Number </label>  
+                <textarea   formControlName="phoneNumber" class="form-control" type="number"></textarea >    
+            </div>
+            <div [ngClass]="!(f?.city?.touched &&f?.city?.invalid) ? 'item' : 'alert-danger'">  
+                <label for="city">City</label>  
+                <textarea   formControlName="city" class="form-control"></textarea >  
+            </div>
+            <div [ngClass]="!(f?.website?.touched &&f?.website?.invalid) ? 'item' : 'alert-danger'">  
+                <label for="website">Website:</label>  
+                <select formControlName="website" class="form-control" >  
+                    <option disabled>Select Website</option>  
+                    <option>Choose Website</option>  
+                    <option *ngFor="let web of websiteList">{{web}}</option>  
+                </select>  
+
+            </div> 
+        </div>
+        <button class="submit-button" type="submit" [disabled]="!form.valid">Submit</button>  
+    </form>  
+</div>  

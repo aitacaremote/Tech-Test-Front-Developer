@@ -1,0 +1,35 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    background-color: #f0f0f0;
+  }
+
+  /* Style for individual items (each row) */
+  .item {
+    padding: 10px;
+    text-align: center;
+  }
+
+  /* Style for the submit button */
+  .submit-button {
+    grid-column: span 2; /* Make the button span both columns */
+    text-align: center;
+    margin-top: 10px;
+  }
+  .alert-danger {
+    background-color: #ff4444; /* Red background color */
+    color: #fff; /* White text color */
+    padding: 15px; /* Padding around the content */
+    border: 1px solid #ff0000; /* Red border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Spacing between alerts */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+  }
+  
+  /* Optional hover effect to make the alert stand out */
+  .alert-danger:hover {
+    background-color: #ff3333; /* Slightly darker red on hover */
+    transition: background-color 0.3s; /* Smooth transition effect */
+  }
