@@ -1,0 +1,88 @@
+.contenedor-grafico-encuesta{
+    display: flex;
+    gap:5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3rem 5rem 3rem 5rem;
+    padding:2rem
+}
+
+
+.shadow-drop-center {
+	-webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+#chart{
+    height: 100%;
+    width: 45%
+}
+
+.contenedor-encuesta{
+    width: 35%;
+}
+
+.contenedor-encuesta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin:1rem 5rem 1rem 5rem;
+  padding: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .contenedor-grafico-encuesta{
+    display: flex;
+    gap:5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0rem;
+    padding:2rem
+}
+
+  /* .shadow-drop-center {
+    -webkit-animation: none;
+    animation: none;
+  } */
+
+  #chart{
+    height: 100%;
+    width: 90%
+}
+
+.contenedor-encuesta{
+    width: 90%;
+}
+
+.contenedor-encuesta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:1rem;
+  padding: 2rem;
+}
+
+}

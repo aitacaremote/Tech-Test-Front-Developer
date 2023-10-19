@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 shadow-drop-center">
+
+
+    <ng-container matColumnDef="posicion">
+      <th mat-header-cell *matHeaderCellDef> Posición </th>
+      <td mat-cell *matCellDef="let element"> {{element.posicion}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="siglas">
+      <th mat-header-cell *matHeaderCellDef> Siglas </th>
+      <td mat-cell *matCellDef="let element"> {{element.siglas}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="porcentaje"  >
+      <th mat-header-cell *matHeaderCellDef class="progress-cell"> Progreso </th>
+      <td mat-cell *matCellDef="let element" >
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" 
+            [style.background-color]="element.color" 
+            [attr.aria-valuenow]="element.porcentaje" 
+            [attr.aria-valuemin]="0"
+            [style.width.%]="element.porcentaje" 
+            [attr.aria-valuemax]="element.porcentaje" > 
+            {{(element.porcentaje / 3.33).toFixed(2)}}%
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

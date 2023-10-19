@@ -1,0 +1,84 @@
+<app-nav></app-nav>
+<div class="contenedor-grafico-encuesta shadow-drop-center">
+<div id="chart"></div>
+<div class="card text-center contenedor-encuesta">
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link active" >Encuesta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://elpais.com/argentina/2023-10-01/milei-encabeza-las-encuestas-pero-sin-bastarle-para-ganar-en-primera-vuelta.html">Ver noticia</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Milei encabeza las encuestas, pero sin bastarle para ganar en primera vuelta</h5>
+      <p class="card-text">De producirse una segunda vuelta Sergio Massa es su rival más probable, aunque la ventaja que tiene con Bullrich está dentro del margen de error</p>
+      <a class="btn btn-primary" (click)="toggleFormulario()">Hacer encuesta</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mostrarFormulario">
+  <div class="container mt-5 contenedor-encuesta shadow-drop-center ">
+    <form #encuestaForm="ngForm" (ngSubmit)="submitForm(encuestaForm)">
+      <div class="mb-3">
+        <label for="edad" class="form-label">¿Cuántos años tienes?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="edad" value="menos16" id="menos16" ngModel>
+          <label class="form-check-label" for="menos16">
+            Menos de 16 años
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="edad" value="16a30" id="16a30" ngModel>
+          <label class="form-check-label" for="16a30">
+            De 16 a 30 años
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="edad" value="30a50" id="30a50" ngModel>
+          <label class="form-check-label" for="30a50">
+            De 30 a 50 años
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="edad" value="mas50" id="mas50" ngModel>
+          <label class="form-check-label" for="mas50">
+            Más de 50 años
+          </label>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="votoPrimeraVuelta" class="form-label">¿Votaste en la primera vuelta de agosto?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="votoPrimeraVuelta" value="si" id="si" ngModel>
+          <label class="form-check-label" for="si">
+            Sí
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="votoPrimeraVuelta" value="no" id="no" ngModel>
+          <label class="form-check-label" for="no">
+            No
+          </label>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="candidato" class="form-label">¿Qué candidato piensas que va a ganar?</label>
+        <select class="form-select" name="candidato" id="candidato" ngModel>
+          <option value="Milei">Milei</option>
+          <option value="Massa">Massa</option>
+          <option value="Bullrich">Bullrich</option>
+          <option value="Schiaretti">Schiaretti</option>
+          <option value="Bregman">Bregman</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" (click)="toggleFormulario()">Enviar</button>
+    </form>
+  </div>
+</div>

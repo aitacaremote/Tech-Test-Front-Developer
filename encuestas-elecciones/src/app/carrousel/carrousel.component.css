@@ -1,0 +1,23 @@
+.carousel-image {
+    height: 300px; /* Ajusta la altura según tus necesidades */
+    width: 100%;
+    object-fit: cover; /* Ajusta la forma en que la imagen se adapta al contenedor */
+  }
+  .carousel-inner img {
+    opacity: 0;
+    transition: opacity 0.5s; /* Agrega una transición de opacidad suave */
+}
+
+.carousel-inner .active img {
+    opacity: 1;
+}
+
+@media (max-width:1000px) {
+  .carousel-image {
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    width: 100%;
+    object-fit: cover; /* Ajusta la forma en que la imagen se adapta al contenedor */
+  }
+  
+}
+
