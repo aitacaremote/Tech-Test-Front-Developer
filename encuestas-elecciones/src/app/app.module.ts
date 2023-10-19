@@ -30,7 +30,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     TableComponent,
     CarrouselComponent,
     CartasComponent,
-
   ],
   imports: [
     BrowserModule,

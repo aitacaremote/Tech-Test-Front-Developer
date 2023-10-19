@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["leaflet"],
             "outputPath": "dist/encuestas-elecciones",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -30,8 +31,10 @@
               "src/styles.css"
             ],
             "scripts": [
+             
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/leaflet/dist/leaflet.js"
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {

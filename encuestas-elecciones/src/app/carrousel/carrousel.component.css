@@ -1,7 +1,6 @@
-@import "~bootstrap/dist/css/bootstrap.css";
-
 .carousel-image {
     height: 300px; /* Ajusta la altura según tus necesidades */
+    width: 100%;
     object-fit: cover; /* Ajusta la forma en que la imagen se adapta al contenedor */
   }
   .carousel-inner img {
@@ -11,5 +10,14 @@
 
 .carousel-inner .active img {
     opacity: 1;
+}
+
+@media (max-width:1000px) {
+  .carousel-image {
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    width: 100%;
+    object-fit: cover; /* Ajusta la forma en que la imagen se adapta al contenedor */
+  }
+  
 }
 
