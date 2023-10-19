@@ -44,7 +44,7 @@ export class MapComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.map = L.map('map').setView([-35.6751, -63.5238], 4);
+    this.map = L.map('map').setView([-40.6751, -63.5238], 4);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,

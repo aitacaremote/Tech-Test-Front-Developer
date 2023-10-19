@@ -1,27 +1,40 @@
-# EncuestasElecciones
+# 🗳️ Encuesta Elecciones Argentina 2023
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+---
 
-## Development server
+## 📋 Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Esta aplicación proporciona información actualizada sobre las elecciones presidenciales de Argentina en 2023. Consta de tres secciones principales:
 
-## Code scaffolding
+1. **Página Principal**: Incluye un mapa interactivo de Argentina utilizando Leaflet, donde las provincias están coloreadas según el candidato líder. También presenta una tabla con las posiciones generales y un carrusel de imágenes relacionadas con el tema.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. **Encuesta**: Muestra un gráfico de barras con los porcentajes de cada candidato según encuestas generales. También ofrece un enlace a la noticia y un botón para completar la encuesta.
 
-## Build
+3. **Noticias**: Contiene cartas enlazadas a páginas específicas de noticias.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 🚀 Uso
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para ver el proyecto en línea, visita [https://eleccionesarg.vercel.app](https://eleccionesarg.vercel.app).
 
-## Running end-to-end tests
+Para levantar localmente el proyecto:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clona el repositorio.
+2. Ejecuta `npm install`.
+3. Luego, ejecuta `npm start`.
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🛠️ Tecnologías Utilizadas
+
+- Leaflet
+- ApexCharts
+- HTML, CSS, Typescript
+- Material Angular
+- Boostrap
+- Angular Form
+
+---
+
+Hecho con ❤️ por Erika Ladner
