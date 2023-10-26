@@ -1,0 +1,38 @@
+
+<mat-card class="example-card mt-4">
+  <mat-card-header>
+
+    <mat-card-title>Hands recognition</mat-card-title>
+    <mat-card-subtitle>Mediapipe (Haloween theme))</mat-card-subtitle>
+  </mat-card-header>
+
+
+  <mat-card-content>
+    <div *ngIf="hasGetUserMedia() else nomedia" class="relative"  [style]="'padding-top:'.concat(responsiveService.wH==400?'66':'133','%')">
+
+      <Video class="w-100 absolute top-0 left-0" [style.display]="mode=='image'?'none':'none'" #myVideo autoplay></Video>
+    <canvas #myCanvas class="w-full absolute top-0 left-0" [width]="responsiveService.wW" [height]="responsiveService.wH"></canvas>
+
+  <div *ngIf="(!webcamRunning || !results?.landmarks) && !test"  class="absolute bg-opacity-25 bg-gray-400 flex align-items-center top-0 left-0 w-full h-full flex-c justify-content-center">
+    <button *ngIf="!webcamRunning"  class="bg-white" mat-raised-button (click)="enableCam($event)">
+      <mat-icon aria-hidden="false"  fontIcon="videocam"></mat-icon>ENABLE CAMERA
+    </button>
+
+    <mat-spinner *ngIf="webcamRunning && !results?.landmarks" ></mat-spinner>
+  </div>
+    </div>
+    <ng-template #nomedia>
+
+      Sorry, No media device detected.
+
+
+    </ng-template>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngIf="webcamRunning && results?.landmarks">
+    <button mat-raised-button *ngIf="serving" (click)="serving=false"> STOP SERVICE</button>
+    <button mat-raised-button *ngIf="!serving" (click)="serving=true"> RUN SERVICE</button>
+    </ng-container>
+  </mat-card-actions>
+</mat-card>
+

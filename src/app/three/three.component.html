@@ -1,0 +1,26 @@
+<mat-card class="example-card mt-4">
+  <mat-card-header>
+
+    <mat-card-title>3D file loading</mat-card-title>
+    <mat-card-subtitle>(Taken from author's side project to demonstrate lazy-loading)</mat-card-subtitle>
+  </mat-card-header>
+
+
+  <mat-card-content>
+  <canvas #canvas id="canvas"  style="height: 90vh; width: 100%;" ></canvas>
+
+
+
+  <div [style.display] ="loading< 100 ? 'flex' : 'none'" class="flex-c w-full h-full align-content-center justify-itemsent-center over">
+    <div class="bg-white"  style="padding:2em;height:200px;">
+      <br>loading 3D reference file <br>
+      <div [style.width.%]="loading" class="h-2 bg-red-500 rounded" ></div>
+
+    </div>
+  </div>
+
+  </mat-card-content>
+</mat-card>
+
+
+
